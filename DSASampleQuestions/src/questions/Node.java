@@ -2,10 +2,16 @@ package questions;
 
 public class Node<T> {
 
-    Subject subject;
-    Node<T> next;
+    // Properties
+    public Subject subject;
+    public Node<T> next;
 
-    public Node() {
+
+    // Constructors
+    public Node() {}
+
+    public Node(Subject subject) {
+        this.subject = subject;
     }
 
     public Node(Subject subject, Node<T> next) {
@@ -13,12 +19,9 @@ public class Node<T> {
         this.next = next;
     }
 
-    public Node(Subject subject) {
-        this.subject = subject;
-    }
-
+    // methods
     @Override
     public String toString() {
-        return String.format("Node {subject=%s, next=%s}", subject, next);
+        return String.format("Node: {Subject: %s}", subject);
     }
 }
