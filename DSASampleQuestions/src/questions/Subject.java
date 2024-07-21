@@ -6,7 +6,8 @@ public class Subject {
     private double grade;
 
     // Constructors
-    public Subject() {};
+    public Subject() {
+    }
 
     public Subject(String module, double grade) {
         this.module = module;
@@ -39,5 +40,5 @@ public class Subject {
     @Override
     public String toString() {
         return String.format("Subject {module=%s, grade=%s}", module, grade);
-    };
+    }
 }

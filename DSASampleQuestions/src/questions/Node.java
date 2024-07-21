@@ -5,7 +5,8 @@ public class Node<T> {
     Subject subject;
     Node<T> next;
 
-    public Node() {};
+    public Node() {
+    }
 
     public Node(Subject subject, Node<T> next) {
         this.subject = subject;

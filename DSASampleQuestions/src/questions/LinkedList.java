@@ -9,7 +9,7 @@ public class LinkedList<T> {
     // Methods
     public boolean isEmpty() {
         return first == null;
-    };
+    }
 
     public int size() {
         if (isEmpty()) {
@@ -19,16 +19,16 @@ public class LinkedList<T> {
             int count = 0;
 
             while (current != null) {
-                count ++;
+                count++;
                 current = current.next;
             }
             return count;
         }
-    };
+    }
 
     public int getAverage() {
         return 0;
-    };
+    }
 
     public void add(Subject module) {
         if (isEmpty()) {
@@ -39,7 +39,7 @@ public class LinkedList<T> {
             last.next = current;
             last = current;
         }
-    };
+    }
 
     public String remove(String module) {
         Node<T> current = first;
@@ -64,10 +64,10 @@ public class LinkedList<T> {
                 first = first.next;
             } else {
                 while (!current.subject.getModule().equalsIgnoreCase(module)) {
-                    counter ++;
+                    counter++;
                     current = current.next;
                 }
-                if (counter == (size() -1)) {
+                if (counter == (size() - 1)) {
                     this.last = current;
                     current.next = null;
                 } else {
@@ -76,7 +76,7 @@ public class LinkedList<T> {
             }
         }
         return "Removed";
-    };
+    }
 
     @Override
     public String toString() {
