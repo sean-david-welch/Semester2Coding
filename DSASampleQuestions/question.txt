@@ -2,28 +2,22 @@ Problem: An Academic Record should contain a list of all a Students grades, usin
 
 Please work on this problem in preparation for the in-class CA:
 
-1.Create a Subject class that takes as its data members a module name, and a grade for that module for example, “Data Structures”, 70.5
-Create a simple App class that tests the output of the Subject class, using the appropriate toString method.
+1.Create a Subject class that takes as its data members a module name,
+ and a grade for that module for example, “Data Structures”, 70.5
+ Create a simple App class that tests the output of the Subject class, using the appropriate toString method.
 
-2. Create a Node that is capable of representing a student’s Academic Record. This Node class should contain an instance of Subject as its “element” along with the relevant pointer to the next node (T).
+2. Create a Node that is capable of representing a student’s Academic Record.
+ This Node class should contain an instance of Subject
+ as its “element” along with the relevant pointer to the next node (T).
 
-3. Construct a new Single LinkedList that uses this Node. Adding a number of subjects into a LinkedList forms an Academic Record. The LinkedList class should contain the following methods:
-
-Reference to first and last Nodes
-
-
-isEmpty – this method should check if the linkedlist is empty
-
-
-size – this method should return the number of nodes within the linkedlist
-
-
-get_average – this method should return the average score of the academic subjects within the linkedlist
-
-
-add - this method should allow the addition of a new Node into the linkedlist at the end of the current list –
-	public void add(Subject module)
-
-
-remove - this method removes the first occurrence of the target Node from the linkedlist. The target is defined by Subject name  -
-			public String remove(String target)
+3. Construct a new Single LinkedList that uses this Node.
+    Adding a number of subjects into a LinkedList forms an Academic Record.
+    The LinkedList class should contain the following methods:
+    - Reference to first and last Nodes
+    - isEmpty – this method should check if the linkedlist is empty
+    - size – this method should return the number of nodes within the linkedlist
+    - get_average – this method should return the average score of the academic subjects within the linkedlist
+    - add - this method should allow the addition of a new Node into the linkedlist
+        at the end of the current list – public void add(Subject module)
+    - remove - this method removes the first occurrence of the target Node from the linkedlist.
+     The target is defined by Subject name  - public String remove(String target)
