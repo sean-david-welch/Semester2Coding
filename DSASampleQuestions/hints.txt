@@ -1,0 +1,62 @@
+#### Subject
+- properties
+- constructors for all
+- getters & setters
+- override method for string
+
+#### Subject App
+- psvm
+- instantiate class
+- sout for two
+
+#### Node
+- Generic class
+- Properties: subject and next
+- 3 constructors
+- override method to string
+
+#### Linked List
+- properties: first and last
+# Methods
+1. is empty if the first node is null
+
+2. size
+    - check for empty
+    - set current node as first and get count
+    - while current is not null (too far) increment count and set current as current next
+    - return count
+
+3. get Average
+    - check for empty if so 0
+    - set current as first and init sum and count
+    - while current is not null
+        - increment sum with grade value
+        - increement count
+        - set current as current next
+    - returun ternary sum / count
+
+4. add takes in subject
+    - if emtpy set first as new node with module and null
+    - set last as first
+
+    - set node current as new node with module and null
+    - set last next as current
+    - set last as current
+
+5. remove takes in String of module
+    - init current node, counter and found?
+    - while current next is not null
+        - if not current get module of module is, set current as current next
+        - else found is true and break
+    - if not found return string as such
+    - current = first and counter is 1
+    - if subject of first then set first as first next
+    - while not current subject is - increment counter and set currnet as current next
+    - if coutner == size - 1 - set last as current, current next as null
+    - else currnet next and current next next
+    - return string
+
+6. overide method
+    - check for empty
+    - loop through and append formatted string
+    - set current and current next
