@@ -1,3 +1,5 @@
+package subjects;
+
 public class Subject {
     // Properties
     private String module;
