@@ -1,12 +1,16 @@
 package questions;
 
 public class Subject {
-    // Properties
+
+    // properties
     private String module;
     private double grade;
 
-    // Constructors
-    public Subject() {
+    // constructors
+    public Subject() {}
+
+    public Subject(String module) {
+        this.module = module;
     }
 
     public Subject(String module, double grade) {
@@ -14,31 +18,27 @@ public class Subject {
         this.grade = grade;
     }
 
-    public Subject(String module) {
-        this.module = module;
-    }
-
-    // Getters
+    // getters
     public String getModule() {
-        return module;
+        return this.module;
     }
 
     public double getGrade() {
-        return grade;
+        return this.grade;
     }
 
-    // Setters
-    public void setGrade(double grade) {
-        this.grade = grade;
-    }
-
+    // setters
     public void setModule(String module) {
         this.module = module;
     }
 
-    // Methods
+    public void setGrade(double grade) {
+        this.grade = grade;
+    }
+
+    // methods
     @Override
     public String toString() {
-        return String.format("Subject {module=%s, grade=%s}", module, grade);
+        return String.format("Module: {%s -- %s}", module, grade);
     }
 }
