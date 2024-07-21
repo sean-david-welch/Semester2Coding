@@ -26,8 +26,21 @@ public class LinkedList<T> {
         }
     }
 
-    public int getAverage() {
-        return 0;
+    public double getAverage() {
+        if (isEmpty()) {
+            return 0;
+        } else {
+            Node<T> current = first;
+            double sum = 0;
+            int count = 0;
+
+            while (current != null) {
+                sum += current.subject.getGrade();
+                count++;
+                current = current.next;
+            }
+            return count == 0 ? 0 : sum / count;
+        }
     }
 
     public void add(Subject module) {
