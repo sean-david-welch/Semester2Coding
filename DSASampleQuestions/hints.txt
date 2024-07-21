@@ -44,17 +44,18 @@
     - set last as current
 
 5. remove takes in String of module
-    - init current node, counter and found?
-    - while current next is not null
-        - if not current get module of module is, set current as current next
-        - else found is true and break
-    - if not found return string as such
-    - current = first and counter is 1
-    - if subject of first then set first as first next
-    - while not current subject is - increment counter and set currnet as current next
-    - if coutner == size - 1 - set last as current, current next as null
-    - else currnet next and current next next
-    - return string
+    - gaurd clause for empty
+    - init node current as first and previous as null
+    - while current is not null and !current is subject
+        - prev is current and current is current next
+    - if current is null return
+    - if previous is null
+        - first is first next
+        - if first is null; last as null
+    - else
+        - prev next is curr next
+        - curr next is null
+            last is previous
 
 6. overide method
     - check for empty

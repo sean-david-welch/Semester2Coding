@@ -2,11 +2,9 @@ package questions;
 
 public class LinkedList<T> {
 
-    // Properties
-    Node<T> first;
-    Node<T> last;
+    public Node<T> first;
+    public Node<T> last;
 
-    // Methods
     public boolean isEmpty() {
         return first == null;
     }
@@ -14,81 +12,76 @@ public class LinkedList<T> {
     public int size() {
         if (isEmpty()) {
             return 0;
-        } else {
-            Node<T> current = first;
-            int count = 0;
-
-            while (current != null) {
-                count++;
-                current = current.next;
-            }
-            return count;
         }
+
+        int count = 0;
+        Node<T> current = first;
+
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
+
 
     public double getAverage() {
         if (isEmpty()) {
             return 0;
-        } else {
-            Node<T> current = first;
-            double sum = 0;
-            int count = 0;
-
-            while (current != null) {
-                sum += current.subject.getGrade();
-                count++;
-                current = current.next;
-            }
-            return count == 0 ? 0 : sum / count;
         }
-    }
 
-    public void add(Subject module) {
-        if (isEmpty()) {
-            first = new Node<>(module, null);
-            last = first;
-        } else {
-            Node<T> current = new Node<>(module, null);
-            last.next = current;
-            last = current;
-        }
-    }
-
-    public String remove(String module) {
+        int count = 0;
+        double sum = 0;
         Node<T> current = first;
-        int counter = 0;
-        boolean found = false;
 
-        while (current.next != null) {
-            if (!current.subject.getModule().equalsIgnoreCase(module)) {
-                current = current.next;
-            } else {
-                found = true;
-                break;
-            }
+        while (current != null) {
+            count ++;
+            sum += current.subject.getGrade();
+            current = current.next;
         }
 
-        if (!found) {
-            return "Not Found";
+        return count == 0 ? 0 : sum / count;
+    }
+
+    public void add(Subject subject) {
+        if (isEmpty()) {
+            first = new Node<>(subject, null);
+            last = first;
+        }
+
+        Node<T> current = new Node<>(subject, null);
+        last.next = current;
+        last = current;
+    }
+
+    public void remove(String subject) {
+        if (isEmpty()) {
+            return;
+        }
+
+        Node<T> current = first;
+        Node<T> previous = null;
+
+        while (current != null && !current.subject.getModule().equalsIgnoreCase(subject)) {
+            previous = current;
+            current = current.next;
+        }
+
+        if (current == null) {
+            return;
+        }
+
+        if (previous == null) {
+            first = first.next;
+            if (first == null) {
+                last = null;
+            }
         } else {
-            current = first;
-            counter = 1;
-            if (first.subject.getModule().equalsIgnoreCase(module)) {
-                first = first.next;
-            } else {
-                while (!current.subject.getModule().equalsIgnoreCase(module)) {
-                    counter++;
-                    current = current.next;
-                }
-                if (counter == (size() - 1)) {
-                    this.last = current;
-                    current.next = null;
-                } else {
-                    current.next = current.next.next;
-                }
+            previous.next = current.next;
+            if (current.next == null) {
+                last = previous;
             }
         }
-        return "Removed";
     }
 
     @Override
