@@ -1,4 +1,4 @@
-package subjects;
+package questions;
 
 public class LinkedList<T> {
 

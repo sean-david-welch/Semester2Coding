@@ -1,10 +1,11 @@
 build:
-	@javac -d target src/subjects/*.java
+	@javac -d target src/questions/*.java
 
-run:
-	@java -cp target subjects/LinkedListApp
+linkedList:
+	@java -cp target questions/LinkedListApp
 
-deploy: build run
+subjects:
+	@java -cp target questions/Subjects
 
 zip:
 	zip -r seanwelch.zip ./*
