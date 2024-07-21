@@ -1,8 +1,8 @@
 build:
-	@javac -d target *.java
+	@javac -d target src/subjects/*.java
 
 run:
-	@java -cp target SubjectApp
+	@java -cp target subjects/LinkedListApp
 
 deploy: build run
 
