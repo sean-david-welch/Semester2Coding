@@ -44,7 +44,7 @@
     - set last as current
 
 5. remove takes in String of module
-    - gaurd clause for empty
+    - gaurd clause for empty - false
     - init node current as first and previous as null
     - while current is not null and !current is subject
         - prev is current and current is current next
@@ -56,6 +56,7 @@
         - prev next is curr next
         - curr next is null
             last is previous
+    - return tture
 
 6. overide method
     - check for empty
