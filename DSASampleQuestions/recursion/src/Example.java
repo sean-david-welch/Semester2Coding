@@ -1,4 +1,4 @@
-public class Main {
+public class Example {
     public static void main(String[] args) {
         System.out.println(factorial(7));
         System.out.println(power(2, 8));
