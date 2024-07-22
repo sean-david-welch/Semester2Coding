@@ -54,9 +54,9 @@ public class LinkedList<T> {
         last = current;
     }
 
-    public void remove(String subject) {
+    public boolean remove(String subject) {
         if (isEmpty()) {
-            return;
+            return false;
         }
 
         Node<T> current = first;
@@ -68,7 +68,7 @@ public class LinkedList<T> {
         }
 
         if (current == null) {
-            return;
+            return false;
         }
 
         if (previous == null) {
@@ -82,6 +82,8 @@ public class LinkedList<T> {
                 last = previous;
             }
         }
+
+        return true;
     }
 
     @Override
