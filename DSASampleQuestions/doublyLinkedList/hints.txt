@@ -1,0 +1,66 @@
+#### Subject
+- properties
+- constructors for all
+- getters & setters
+- override method for string
+
+#### Subject App
+- psvm
+- instantiate class
+- sout for two
+
+#### Node
+- Generic class
+- Properties: subject and next and prev
+- 4 constructors
+- override method to string
+
+#### Doubly Linked List
+- properties: first and last
+# Methods
+1. is empty if the first node is null
+
+2. size
+    - check for empty
+    - set current node as first and get count
+    - while current is not null (too far) increment count and set current as current next
+    - return count
+
+3. get Average
+    - check for empty if so 0
+    - set current as first and init sum and count
+    - while current is not null
+        - increment sum with grade value
+        - increement count
+        - set current as current next
+    - returun ternary sum / count
+
+4. add takes in subject
+    - init new node current
+
+    - if empty set last and first as current
+
+    - set last next as current
+    - set current previous as last
+    - set last as current
+
+5. remove takes in String of subject name
+    - gaurd clause for empty - false
+
+    - set current node as first
+    - while current is not null and not current subject = subject name -> set current and current next
+
+    - if current is null then false
+
+    - if current prev != null -> current.prev.next = current.next
+    - else -> first = current.next
+
+    - if current next != null -> current.next.prev = current.prev
+    - else -> last = current.prev
+
+    - return true
+
+6. overide method
+    - check for empty
+    - loop through and append formatted string
+    - set current and current next
