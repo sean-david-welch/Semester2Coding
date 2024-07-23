@@ -5,8 +5,6 @@ public class LinkedList<T> {
     public Node<T> first;
     public Node<T> last;
 
-    public LinkedList() {}
-
     public boolean isEmpty() {
         return first == null;
     }
@@ -21,6 +19,7 @@ public class LinkedList<T> {
             count++;
             current = current.next;
         }
+
         return count;
     }
 
@@ -36,6 +35,7 @@ public class LinkedList<T> {
             sum += current.subject.getGrade();
             current = current.next;
         }
+
         return count == 0 ? 0 : sum / count;
     }
 
@@ -50,30 +50,11 @@ public class LinkedList<T> {
         last = current;
     }
 
-    public boolean remove(String subjectName) {
+    public boolean remove(String subject) {
         if (isEmpty()) return false;
 
         Node<T> current = first;
-        Node<T> prev = null;
-
-        while (current != null && current.subject.getModule().equalsIgnoreCase(subjectName)) {
-            prev = current;
-            current = current.next;
-        }
-
-        if (current == null) {
-            return false;
-        }
-
-        if (prev == null) {
-            first = first.next;
-            if (first == null) last = null;
-        } else {
-            prev.next = current.next;
-            if (current.next == null) {
-                last = prev;
-            }
-        }
+        Node<T> previous = null;
 
         return true;
     }
