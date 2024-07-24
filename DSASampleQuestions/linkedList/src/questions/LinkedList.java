@@ -56,6 +56,18 @@ public class LinkedList<T> {
         Node<T> current = first;
         Node<T> previous = null;
 
+        while (current != null && !current.subject.getModule().equalsIgnoreCase(subject)) {
+            previous = current;
+            current = current.next;
+        }
+
+        if (current == null) return false;
+
+        if (previous != null) {
+            previous.next = current.next;
+        } else {
+            first = current.next;
+        }
 
         return true;
     }
