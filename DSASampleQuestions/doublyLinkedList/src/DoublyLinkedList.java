@@ -45,6 +45,7 @@ public class DoublyLinkedList<T> {
         }
 
         last.next = current;
+        // this is new
         current.prev = last;
         last = current;
     }
@@ -59,12 +60,14 @@ public class DoublyLinkedList<T> {
 
         if (current == null) return false;
 
+        // new
         if (current.prev != null) {
             current.prev.next = current.next;
         } else {
             first = current.next;
         }
 
+        // new
         if (current.next != null) {
             current.next.prev = current.prev;
         } else {
