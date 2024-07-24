@@ -44,19 +44,16 @@
     - set last as current
 
 5. remove takes in String of module
-    - gaurd clause for empty - false
-    - init node current as first and previous as null
-    - while current is not null and !current is subject
+    - emtpy gaurd clause
+    - current as first, previoud as null
+    - while current not null and not equal module
         - prev is current and current is current next
-    - if current is null return
-    - if previous is null
-        - first is first next
-        - if first is null; last as null
-    - else
-        - prev next is curr next
-        - curr next is null
-            last is previous
-    - return tture
+    - if current is null - false
+
+    - if prev not null - > set prev.next = current next
+    - else -> first = current .next
+
+    - return true
 
 6. overide method
     - check for empty
