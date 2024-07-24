@@ -78,7 +78,6 @@ public class DoublyLinkedList<T> {
     public String toString() {
         if (isEmpty()) return "Empty";
 
-
         Node<T> current = first;
         StringBuilder string = new StringBuilder("List: \n");
         for (int i = 1; i <= size(); i++) {
