@@ -64,8 +64,10 @@ public class LinkedList<T> {
         if (current == null) return false;
 
         if (previous != null) {
+            // break the link
             previous.next = current.next;
         } else {
+            // drop it
             first = current.next;
         }
 
