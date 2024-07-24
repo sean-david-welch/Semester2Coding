@@ -56,6 +56,7 @@ public class LinkedList<T> {
         Node<T> current = first;
         Node<T> previous = null;
 
+
         return true;
     }
 
