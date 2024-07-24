@@ -72,19 +72,19 @@ public class LinkedList<T> {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        StringBuilder string = new StringBuilder("List: \n");
-//        Node<T> current = first;
-//
-//        if (isEmpty()) {
-//            return "The list is Empty";
-//        } else {
-//            for (int i = 1; i <= size(); i++) {
-//                string.append(String.format("%s) %s\n", i, current.toString()));
-//                current = current.next;
-//            }
-//            return string.toString();
-//        }
-//    }
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("List: \n");
+        Node<T> current = first;
+
+        if (isEmpty()) {
+            return "The list is Empty";
+        } else {
+            for (int i = 1; i <= size(); i++) {
+                string.append(String.format("%s) %s\n", i, current.toString()));
+                current = current.next;
+            }
+            return string.toString();
+        }
+    }
 }
