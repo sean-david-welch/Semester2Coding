@@ -15,4 +15,12 @@ public class Node<T> {
         this.project = project;
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "project=" + project +
+                ", next=" + next +
+                '}';
+    }
 }
