@@ -21,10 +21,10 @@ public class Node<T> {
         if (next != null) {
             return "Node{" +
                     "project=" + project +
-                    ", next=" + next +
-                    '}' + '\n';
+                    "},\n" + next.toString();
         } else {
-              return "Node{" + "project=" + project + '}' + '\n';
+            return "Node{" + "project=" + project + "}\n";
         }
     }
+
 }
