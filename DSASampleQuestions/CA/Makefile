@@ -5,4 +5,4 @@ run:
 	@java -cp target ./Main
 
 zip:
-	zip -r seanwelch.zip ./*
+	zip -r x23285508_SeanWelch.zip ./*
