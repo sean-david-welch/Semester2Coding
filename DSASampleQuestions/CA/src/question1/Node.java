@@ -18,9 +18,13 @@ public class Node<T> {
 
     @Override
     public String toString() {
-        return "Node{" +
-                "project=" + project +
-                ", next=" + next +
-                '}';
+        if (next != null) {
+            return "Node{" +
+                    "project=" + project +
+                    ", next=" + next +
+                    '}' + '\n';
+        } else {
+              return "Node{" + "project=" + project + '}' + '\n';
+        }
     }
 }

@@ -92,6 +92,6 @@ public class Project {
                 ", projectDescription='" + projectDescription + '\'' +
                 ", projectDuration=" + projectDuration +
                 ", projectStatus='" + projectStatus + '\'' +
-                '}';
+                '}' + '\n';
     }
 }
