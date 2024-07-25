@@ -8,6 +8,40 @@ public class Project {
     public int projectDuration;
     public String projectStatus;
 
+    // Constructors
+    public Project() {
+    }
+
+    public Project(String projectCode) {
+        this.projectCode = projectCode;
+    }
+
+    public Project(String projectCode, String managerName) {
+        this.projectCode = projectCode;
+        this.managerName = managerName;
+    }
+
+    public Project(String projectCode, String managerName, String projectDescription) {
+        this.projectCode = projectCode;
+        this.managerName = managerName;
+        this.projectDescription = projectDescription;
+    }
+
+    public Project(String projectCode, String managerName, String projectDescription, int projectDuration) {
+        this.projectCode = projectCode;
+        this.managerName = managerName;
+        this.projectDescription = projectDescription;
+        this.projectDuration = projectDuration;
+    }
+
+    public Project(String projectCode, String managerName, String projectDescription, int projectDuration, String projectStatus) {
+        this.projectCode = projectCode;
+        this.managerName = managerName;
+        this.projectDescription = projectDescription;
+        this.projectDuration = projectDuration;
+        this.projectStatus = projectStatus;
+    }
+
     // Getters
     public String getProjectCode() {
         return projectCode;
