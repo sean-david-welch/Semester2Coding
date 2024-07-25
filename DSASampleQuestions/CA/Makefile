@@ -11,4 +11,4 @@ Recursion:
 	@java -cp target question2/Recursion
 
 zip:
-	zip -r x23285508_SeanWelch.zip ./*
+	zip -r ~/Downloads/x23285508_SeanWelch.zip ./src
