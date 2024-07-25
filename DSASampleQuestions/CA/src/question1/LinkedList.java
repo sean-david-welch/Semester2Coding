@@ -9,10 +9,21 @@ public class LinkedList<T> {
     }
 
     public String getProject(int projectIndex) {
-        for (int i = 0; i < projectIndex; i++) {
-            System.out.println("hi");
+        if (isEmpty()) return "List is empty, no projects";
+
+        Node<T> current = first;
+        int currentIndex = 0;
+
+        while (current != null && currentIndex < projectIndex) {
+            current = current.next;
+            currentIndex++;
         }
-        return "";
+
+        if (current == null) {
+            return "Nothing here pal!";
+        }
+
+        return current.project.toString();
     }
 
     public int size() {
