@@ -11,6 +11,7 @@ public class LinkedListApp {
         Project project5 = new Project("PTDJA%", "Damo Delaney", "Sports Centre", 6543, "Run of the mill");
 
         System.out.println("Is the list empty? " + projectList.isEmpty());
+        System.out.println("------------------------------------");
 
         projectList.add(project1);
         projectList.add(project2);
@@ -19,19 +20,24 @@ public class LinkedListApp {
         projectList.add(project5);
 
         System.out.println("Number of projects in the list: " + projectList.size());
+        System.out.println("------------------------------------");
         System.out.println("Is the list empty now? " + projectList.isEmpty());
+        System.out.println("------------------------------------");
 
         System.out.println("Project at index 2: " + projectList.getProject(2));
-        System.out.println("Project at index 5 (out of bounds): " + projectList.getProject(5));
-
+        System.out.println("Project at index 6 (out of bounds): " + projectList.getProject(6));
+        System.out.println("------------------------------------");
 
         System.out.println("All projects in the list:");
         System.out.println(projectList.toString());
+        System.out.println("------------------------------------");
 
         System.out.println("Removing project with code PTDFB3: " + projectList.remove("PTDUGB2"));
         System.out.println("Removing non-existent project: " + projectList.remove("NONEXISTENT"));
+        System.out.println("------------------------------------");
 
         System.out.println("Updated list of projects:");
         System.out.println(projectList.toString());
+        System.out.println("------------------------------------");
     }
 }

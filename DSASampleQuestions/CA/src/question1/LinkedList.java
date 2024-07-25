@@ -43,11 +43,11 @@ public class LinkedList<T> {
         if (isEmpty()) {
             first = new Node<>(project, null);
             last = first;
+        } else {
+            Node<T> current = new Node<>(project, null);
+            last.next = current;
+            last = current;
         }
-
-        Node<T> current = new Node<>(project, null);
-        last.next = current;
-        last = current;
     }
 
     public boolean remove(String projectCode) {
@@ -78,7 +78,7 @@ public class LinkedList<T> {
         StringBuilder string = new StringBuilder();
         Node<T> current = first;
         for (int i = 0; i < size(); i++) {
-            string.append(String.format("%s: %s\n", i + 1, current.toString()));
+            string.append(String.format("%s: %s\n", i + 1, current.project.toString()));
             current = current.next;
         }
         return string.toString();
