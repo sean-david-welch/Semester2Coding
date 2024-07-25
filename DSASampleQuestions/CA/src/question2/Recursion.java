@@ -1,6 +1,6 @@
 package question2;
 
-public class Main {
+public class Recursion {
     public static void main(String[] args) {
 
         // will return true - (3, 30 are adjacent and are 10x)
