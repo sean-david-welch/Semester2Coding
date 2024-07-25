@@ -15,6 +15,19 @@ public class LinkedList<T> {
         return "";
     }
 
+    public int size() {
+        if (isEmpty()) return 0;
+
+        int count = 0;
+        Node<T> current = first;
+
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+
     public void add(Project project) {
         if (isEmpty()) {
             first = new Node<>(project, null);
@@ -45,5 +58,18 @@ public class LinkedList<T> {
             first = current.next;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        if (isEmpty()) return "The List is empty";
+
+        StringBuilder string = new StringBuilder();
+        Node<T> current = first;
+        for (int i = 0; i < size(); i++) {
+            string.append(String.format("%s: %s\n", i + 1, current.toString()));
+            current = current.next;
+        }
+        return string.toString();
     }
 }
