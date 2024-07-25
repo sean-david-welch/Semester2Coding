@@ -1,9 +1,11 @@
 package question1;
 
 public class Node<T> {
+    // Properties
     public Project project;
     public Node<T> next;
 
+    // constructors
     public Node() {
     }
 
@@ -16,6 +18,7 @@ public class Node<T> {
         this.next = next;
     }
 
+    // override method for string representation
     @Override
     public String toString() {
         if (next != null) {
