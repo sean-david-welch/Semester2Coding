@@ -4,9 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ReadPeople {
-
     public static void main(String[] args) throws Exception {
-        File directory = new File("../resources/");
+        File directory = new File("./resources/");
         String name = directory.getAbsolutePath() + File.separator + "people.csv";
         People[] people = new People[10000];
 
@@ -37,12 +36,9 @@ public class ReadPeople {
             return;
         }
 
-        // print details
-        System.out.println(people[0]);
-        System.out.println(people[1]);
-
-        // compare objects
-        System.out.println(people[0] == people[0]);
-        System.out.println(people[0] == people[1]);
+        assert people[0] != null : "First person object should not be null";
+        assert people[1] != null : "Second person object should not be null";
+        assert people[0].equals(people[0]) : "A person object should be equal to itself";
+        assert !people[0].equals(people[1]) : "Different person objects should not be equal";
     }
 }
