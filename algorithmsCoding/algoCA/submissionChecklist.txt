@@ -1,4 +1,7 @@
 Submission Checklist:
+Student Number x23285508
+Last digit = 8: Use peoples.csv
+Second Last Digit = 0: sort on column 5
 
 1. After unzipping the "ca1 resources.zip" file, a Word document titled "CA1 student answers.docx" will be found next to the three folders, as mentioned above.
    - Use this Word file to add your answers to each of the questions in this brief.
