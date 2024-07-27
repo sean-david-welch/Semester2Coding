@@ -1,12 +1,20 @@
+package people;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ReadPeople {
-    public static void main(String[] args) throws Exception {
-        File directory = new File("./resources/");
-        String name = directory.getAbsolutePath() + File.separator + "people.csv";
+public class PeopleReader {
+    private final String filePath;
+
+    public PeopleReader(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public People[] readPeople() throws Exception {
+        File directory = new File(filePath);
+        String name = directory.getAbsolutePath();
         People[] people = new People[10000];
 
         try (BufferedReader buffer = new BufferedReader(new FileReader(name))) {
@@ -33,12 +41,14 @@ public class ReadPeople {
             }
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
-            return;
+            return null;
         }
 
         assert people[0] != null : "First person object should not be null";
         assert people[1] != null : "Second person object should not be null";
         assert people[0].equals(people[0]) : "A person object should be equal to itself";
         assert !people[0].equals(people[1]) : "Different person objects should not be equal";
+
+        return people;
     }
 }

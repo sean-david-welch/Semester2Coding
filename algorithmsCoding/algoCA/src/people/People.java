@@ -1,4 +1,6 @@
-class People implements Comparable<People> {
+package people;
+
+public class People implements Comparable<People> {
     private int ID;
     private String Name;
     private String Surname;

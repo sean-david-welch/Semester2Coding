@@ -17,7 +17,7 @@ Part 2: Defensive Programming and Exception Handling (30 marks)
 - The exception should generate a message similar to the following:
  “Person's name cannot be empty. It cannot have only digits! Please correct this!”
 - (15 Marks)
-- People example:
+- people.People example:
  - Invalid input: name = 2343322
  - Invalid input: name = ""
 - Vehicles example:
