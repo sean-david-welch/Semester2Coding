@@ -1,0 +1,32 @@
+Marks: 80-100
+
+Question 1:
+- Excellent implementation of the sorting algorithm.
+- Use of Generics and best practices.
+- Excellent documentation and inline comments.
+
+Question 2:
+- Excellent demonstration of understanding the algorithms performance analysis.
+- The results are presented in a very clear and confident manner.
+
+Question 3:
+- Excellent implementation of the sorting algorithm.
+- Use of Generics and best practices.
+- Excellent documentation and inline comments.
+
+Question 4:
+- Excellent implementation of the search algorithm.
+- Use of Generics and best practices.
+- User messages are displayed as expected.
+- Excellent documentation and inline comments.
+
+Question 5:
+- Excellent implementation of data entry from a user.
+- Accurately accept all the fields, create a new record.
+- Data creation done via setter methods of the class.
+- Excellent documentation and inline comments.
+
+Question 6:
+- Excellent handling of exceptions with custom descriptive message.
+- Accurately catch and throw the exception.
+- Excellent documentation and inline comments.
