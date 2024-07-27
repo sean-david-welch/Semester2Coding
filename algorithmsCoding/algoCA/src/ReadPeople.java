@@ -1,34 +1,48 @@
+import java.io.BufferedReader;
 import java.io.File;
-import java.util.*;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class ReadPeople {
 
     public static void main(String[] args) throws Exception {
-        //parsing and reading the CSV file data into the object array
-        File directory = new File("./");
-        String name = directory.getAbsolutePath() + "//people.csv";
-        People[] people;
-        try (Scanner scanner = new Scanner(new File(name))) {
-            people = new People[10000];
-            // this will just print the header in CSV file
-            scanner.nextLine();
+        File directory = new File("../resources/");
+        String name = directory.getAbsolutePath() + File.separator + "people.csv";
+        People[] people = new People[10000];
+
+        try (BufferedReader buffer = new BufferedReader(new FileReader(name))) {
+            buffer.readLine(); // Skip csv header
+
+            String line;
             int i = 0;
-            String sGetData;
-            while (scanner.hasNextLine()) {
-                sGetData = scanner.nextLine();
-                String[] data = sGetData.split(",");
-                people[i++] = new People(Integer.parseInt(data[0]), data[1], data[2], data[3], Integer.parseInt(data[4]), Long.parseLong(data[5]));
+
+            while ((line = buffer.readLine()) != null && i < people.length) {
+                try {
+                    String[] data = line.split(",");
+                    people[i++] = new People(
+                            Integer.parseInt(data[0]),
+                            data[1],
+                            data[2],
+                            data[3],
+                            Integer.parseInt(data[4]),
+                            Long.parseLong(data[5])
+                    );
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                    System.err.println("Error parsing line: " + line);
+                    System.err.println("Error details: " + e.getMessage());
+                }
             }
-            //closes the scanner
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            return;
         }
 
-        // we can print details due to overridden toString method in the class below
+        // print details
         System.out.println(people[0]);
         System.out.println(people[1]);
 
-        // we can compare objects based on their ID due to overridden CompareTo method in the class below
+        // compare objects
         System.out.println(people[0] == people[0]);
         System.out.println(people[0] == people[1]);
     }
-
 }
