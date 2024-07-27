@@ -1,4 +1,4 @@
-class People implements Comparable<Object> {
+class People implements Comparable<People> {
     private int ID;
     private String Name;
     private String Surname;
@@ -16,16 +16,9 @@ class People implements Comparable<Object> {
         this.Credit = Credit;
     }
 
-    // the objects can be compared when sorting/searching
     @Override
-    public int compareTo(Object obj) {
-
-        /*
-		Edit this section so it compares the appropriate
-		column you wish to sort by
-         */
-        People myPeople = (People) obj;
-        return ID - (myPeople.getID());
+    public int compareTo(People person) {
+        return Integer.compare(this.Age, person.Age);
     }
 
     @Override
@@ -85,4 +78,5 @@ class People implements Comparable<Object> {
     public void setCredit(long credit) {
         this.Credit = credit;
     }
+
 }
