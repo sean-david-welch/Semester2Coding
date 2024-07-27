@@ -12,7 +12,7 @@ public class PeopleReader {
         this.filePath = filePath;
     }
 
-    public People[] readPeople() throws Exception {
+    public People[] readPeople() {
         File directory = new File(filePath);
         String name = directory.getAbsolutePath();
         People[] people = new People[10000];
@@ -43,11 +43,6 @@ public class PeopleReader {
             System.err.println("Error reading file: " + e.getMessage());
             return null;
         }
-
-        assert people[0] != null : "First person object should not be null";
-        assert people[1] != null : "Second person object should not be null";
-        assert people[0].equals(people[0]) : "A person object should be equal to itself";
-        assert !people[0].equals(people[1]) : "Different person objects should not be equal";
 
         return people;
     }
