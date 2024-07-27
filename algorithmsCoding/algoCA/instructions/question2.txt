@@ -1,25 +1,28 @@
 Part 2: Defensive Programming and Exception Handling (30 marks)
 
-5. Write a Java program that accepts a new record (with all the six fields) and adds it at the end of the record array, with a new consecutive ID number.
-   - (15 Marks)
-   - Example input for people dataset:
-     (10001, Mark, Grant, Manager, 33, 472132554)
-   - Example input for vehicles dataset:
-     (10001, Fiat, Petrol, Dublin, 1634, 942)
-   - Example input for companies dataset:
-     (1001; Mango ltd.; Ireland; Euro; 575325719; 159)
+5. Write a Java program that accepts a new record (with all the six fields)
+   and adds it at the end of the record array, with a new consecutive ID number.
+- (15 Marks)
+- Example input for people dataset:
+ (10001, Mark, Grant, Manager, 33, 472132554)
+- Example input for vehicles dataset:
+ (10001, Fiat, Petrol, Dublin, 1634, 942)
+- Example input for companies dataset:
+ (1001; Mango ltd.; Ireland; Euro; 575325719; 159)
 
-6. Write a Java Exception that handles special cases and communicates to users to correct the cases.
-   - A typical special case is that the "name" field cannot be empty or cannot contain digits only.
-   - The exception should generate a message similar to the following:
-     “Person's name cannot be empty. It cannot have only digits! Please correct this!”
-   - (15 Marks)
-   - People example:
-     - Invalid input: name = 2343322
-     - Invalid input: name = ""
-   - Vehicles example:
-     - Invalid input: fuel = 45
-     - Invalid input: fuel = ""
-   - Companies example:
-     - Invalid input: currency = 20
-     - Invalid input: currency = ""
+6. Write a Java Exception that handles special cases and
+   communicates to users to correct the cases.
+- A typical special case is that the "name" field cannot be empty or
+  cannot contain digits only.
+- The exception should generate a message similar to the following:
+ “Person's name cannot be empty. It cannot have only digits! Please correct this!”
+- (15 Marks)
+- People example:
+ - Invalid input: name = 2343322
+ - Invalid input: name = ""
+- Vehicles example:
+ - Invalid input: fuel = 45
+ - Invalid input: fuel = ""
+- Companies example:
+ - Invalid input: currency = 20
+ - Invalid input: currency = ""
