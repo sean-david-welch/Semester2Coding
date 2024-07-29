@@ -7,41 +7,45 @@ public class PeopleSorter {
         this.people = people;
     }
 
-public void BubbleSort() {
-    int n = this.people.length;
-    boolean swapped;
+    public People[] BubbleSort() {
+        int n = this.people.length;
+        boolean swapped;
 
-    for (int i = 0; i < n - 1; i++) {
-        swapped = false;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
 
-        for (int j = 0; j < n - i - 1; j++) {
-            int compareResult = this.people[j].compareTo(this.people[j + 1]);
-            boolean needsSwap = compareResult > 0 ||
-                                (compareResult == 0 && this.people[j].getID() > this.people[j + 1].getID());
+            for (int j = 0; j < n - i - 1; j++) {
+                int compareResult = this.people[j].compareTo(this.people[j + 1]);
+                boolean needsSwap = compareResult > 0 ||
+                        (compareResult == 0 && this.people[j].getID() > this.people[j + 1].getID());
 
-            if (needsSwap) {
-                // Swap elements
-                People temp = this.people[j];
-                this.people[j] = this.people[j + 1];
-                this.people[j + 1] = temp;
-                swapped = true;
+                if (needsSwap) {
+                    // Swap elements
+                    People temp = this.people[j];
+                    this.people[j] = this.people[j + 1];
+                    this.people[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+
+            // If no swapping occurred, array is sorted
+            if (!swapped) {
+                break;
             }
         }
 
-        // If no swapping occurred, array is sorted
-        if (!swapped) {
-            break;
-        }
+        return people;
     }
-}
 
-    public void QuickSort(int low, int high) {
+    public People[] QuickSort(int low, int high) {
         if (low < high) {
             int partition = partition(low, high);
 
             QuickSort(low, partition - 1);
             QuickSort(partition + 1, high);
         }
+
+        return people;
     }
 
     private int partition(int low, int high) {
@@ -63,5 +67,7 @@ public void BubbleSort() {
         return i + 1;
     }
 
-    public static void BinarySearch() {}
+    public static void BinarySearch() {
+
+    }
 }

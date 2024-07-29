@@ -15,8 +15,8 @@ public class PeopleSorterTest {
 
             PeopleSorter peopleSorter = new PeopleSorter(people);
 
-            peopleSorter.BubbleSort();
-            AssertArraySorted(people);
+            People[] sortedPeople = peopleSorter.BubbleSort();
+            AssertArraySorted(sortedPeople);
         } catch (Exception e) {
             System.err.println("Failed to read people: " + e.getMessage());
         }
@@ -30,8 +30,8 @@ public class PeopleSorterTest {
 
             PeopleSorter peopleSorter = new PeopleSorter(people);
 
-            peopleSorter.QuickSort(0, people.length - 1);
-            AssertArraySorted(people);
+            People[] sortedPeople = peopleSorter.QuickSort(0, people.length - 1);
+            AssertArraySorted(sortedPeople);
         } catch (Exception e) {
             System.err.println("Failed to read people: " + e.getMessage());
         }
