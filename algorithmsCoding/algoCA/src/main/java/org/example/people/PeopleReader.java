@@ -1,4 +1,4 @@
-package people;
+package org.example.people;
 
 import java.io.BufferedReader;
 import java.io.File;

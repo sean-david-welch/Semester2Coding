@@ -1,4 +1,4 @@
-package people;
+package org.example.people;
 
 public class PeopleSorter {
     private final People[] people;

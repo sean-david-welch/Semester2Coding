@@ -1,4 +1,4 @@
-package people;
+package org.example.people;
 
 public class People implements Comparable<People> {
     private int ID;
