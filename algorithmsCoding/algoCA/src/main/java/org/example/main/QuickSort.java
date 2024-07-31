@@ -12,9 +12,9 @@ public class QuickSort {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            QuickSort quickSort = new QuickSort(people);
+            QuickSort qs = new QuickSort(people);
 
-            People[] sortedPeople =  quickSort.quickSort(0, people.length - 1);
+            People[] sortedPeople =  qs.quickSort(0, people.length - 1);
             String homeDirectory = System.getProperty("user.home");
 
             try (FileWriter writer = new FileWriter(homeDirectory + "/quickSortedPeople.csv")) {

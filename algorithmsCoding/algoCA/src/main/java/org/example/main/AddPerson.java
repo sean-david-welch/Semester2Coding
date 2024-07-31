@@ -11,11 +11,11 @@ public class AddPerson {
     public static void main(String[] args) {
         try {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
+
             People[] people = peopleReader.readPeople();
             PeopleWriter peopleWriter = new PeopleWriter(people);
 
             People newPerson = new People(1001, "Mark", "Grant", "Manager", 33, 472132554);
-
             People[] newPeople = peopleWriter.addPerson(newPerson);
 
             String homeDirectory = System.getProperty("user.home");

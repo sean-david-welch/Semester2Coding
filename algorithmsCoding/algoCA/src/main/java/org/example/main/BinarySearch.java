@@ -13,12 +13,12 @@ public class BinarySearch {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            BinarySearch binarySearch = new BinarySearch(people);
+            BinarySearch bs = new BinarySearch(people);
 
             String columnToSearch = "name";
             String targetValue = "Joe";
 
-            int result = binarySearch.binarySearch(columnToSearch, targetValue);
+            int result = bs.binarySearch(columnToSearch, targetValue);
 
             if (result != -1) {
                 System.out.println(targetValue + " was found in the " + columnToSearch + " list");

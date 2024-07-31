@@ -12,9 +12,9 @@ public class BubbleSort {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            BubbleSort bubbleSort = new BubbleSort(people);
+            BubbleSort bs = new BubbleSort(people);
 
-            People[] sortedPeople = bubbleSort.bubbleSort();
+            People[] sortedPeople = bs.bubbleSort();
             String homeDirectory = System.getProperty("user.home");
 
             try (FileWriter writer = new FileWriter(homeDirectory + "/bubbleSortedPeople.csv")) {

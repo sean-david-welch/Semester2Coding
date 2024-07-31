@@ -1,5 +1,6 @@
 package org.example.people;
 
+// Question 6 class implementation - example is instantiate in People Writer
 public class PeopleExceptionHandler extends RuntimeException {
     public PeopleExceptionHandler(String message) {
         super(message);
@@ -15,13 +16,13 @@ public class PeopleExceptionHandler extends RuntimeException {
 
     private static void validateName(String name) {
         if (name == null || name.trim().isEmpty() || name.matches("\\d+")) {
-            throw new PeopleExceptionHandler("Person's name cannot be empty. It cannot have only digits! Please correct this!");
+            throw new PeopleExceptionHandler("Person's name cannot be empty or only have digits!");
         }
     }
 
     private static void validateSurname(String surname) {
         if (surname == null || surname.trim().isEmpty() || surname.matches("\\d+")) {
-            throw new PeopleExceptionHandler("Person's surname cannot be empty. It cannot have only digits! Please correct this!");
+            throw new PeopleExceptionHandler("Person's surname cannot be empty or only have digits!");
         }
     }
 

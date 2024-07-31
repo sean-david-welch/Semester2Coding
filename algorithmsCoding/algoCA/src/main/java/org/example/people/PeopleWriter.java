@@ -9,6 +9,7 @@ public class PeopleWriter {
     }
 
     public People[] addPerson(People person) {
+        // examnple use case of question 6 exception handler
         PeopleExceptionHandler.validatePerson(person);
 
         int id = (people.length > 0) ? people[people.length - 1].getID() + 1 : 0;
