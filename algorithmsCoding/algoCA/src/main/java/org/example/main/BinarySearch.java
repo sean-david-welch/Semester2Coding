@@ -1,16 +1,18 @@
-package org.example.people;
+package org.example.main;
+
+import org.example.people.People;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class PeopleSorter {
+public class BinarySearch {
     private final People[] people;
 
-    public PeopleSorter(People[] people) {
+    public BinarySearch(People[] people) {
         this.people = people;
     }
 
-    public int BinarySearch(int targetAge) {
+    public int binarySearch(int targetAge) {
         Arrays.sort(people, Comparator.comparingInt(People::getAge));
 
         int low = 0;

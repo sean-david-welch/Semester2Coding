@@ -2,7 +2,6 @@ import org.example.main.BubbleSort;
 import org.example.main.QuickSort;
 import org.example.people.People;
 import org.example.people.PeopleReader;
-import org.example.people.PeopleSorter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
