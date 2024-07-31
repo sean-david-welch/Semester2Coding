@@ -21,7 +21,7 @@ public class BubbleSort {
             try (FileWriter writer = new FileWriter(homeDirectory + "/sortedPeople.csv")) {
                 writer.write("ID,Name,Age\n");
 
-                for (People person : people) {
+                for (People person : sortedPeople) {
                     writer.write(person.toString() + "\n");
                 }
             }
