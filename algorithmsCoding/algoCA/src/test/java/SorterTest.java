@@ -1,3 +1,5 @@
+import org.example.main.BubbleSort;
+import org.example.main.QuickSort;
 import org.example.people.People;
 import org.example.people.PeopleReader;
 import org.example.people.PeopleSorter;
@@ -6,16 +8,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class PeopleSorterTest {
+public class SorterTest {
     @Test
     void TestBubbleSort() {
         try {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            PeopleSorter peopleSorter = new PeopleSorter(people);
+            BubbleSort bubbleSort = new BubbleSort(people);
 
-            People[] sortedPeople = peopleSorter.BubbleSort();
+            People[] sortedPeople = bubbleSort.bubbleSort();
             AssertArraySorted(sortedPeople);
         } catch (Exception e) {
             System.err.println("Failed to read people: " + e.getMessage());
@@ -28,9 +30,9 @@ public class PeopleSorterTest {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            PeopleSorter peopleSorter = new PeopleSorter(people);
+            QuickSort quickSort = new QuickSort(people);
 
-            People[] sortedPeople = peopleSorter.QuickSort(0, people.length - 1);
+            People[] sortedPeople = quickSort.quickSort(0, people.length - 1);
             AssertArraySorted(sortedPeople);
         } catch (Exception e) {
             System.err.println("Failed to read people: " + e.getMessage());
