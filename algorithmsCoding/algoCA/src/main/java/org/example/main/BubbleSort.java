@@ -5,8 +5,8 @@ import java.io.FileWriter;
 import org.example.people.People;
 import org.example.people.PeopleReader;
 
+//
 public class BubbleSort {
-    private final People[] people;
 
     public static void main(String[] args) {
         try {
@@ -18,7 +18,7 @@ public class BubbleSort {
             People[] sortedPeople = bubbleSort.bubbleSort();
             String homeDirectory = System.getProperty("user.home");
 
-            try (FileWriter writer = new FileWriter(homeDirectory + "/sortedPeople.csv")) {
+            try (FileWriter writer = new FileWriter(homeDirectory + "/bubbleSortedPeople.csv")) {
                 writer.write("ID,Name,Age\n");
 
                 for (People person : sortedPeople) {
@@ -29,6 +29,8 @@ public class BubbleSort {
             System.err.println("Failed to read people: " + e.getMessage());
         }
     }
+
+    private final People[] people;
 
     public BubbleSort(People[] people) {
         this.people = people;
