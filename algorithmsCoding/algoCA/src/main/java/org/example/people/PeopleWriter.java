@@ -3,6 +3,10 @@ package org.example.people;
 public class PeopleWriter {
     private People[] people;
 
+    public PeopleWriter(People[] people) {
+        this.people = people;
+    }
+
     public People[] addPerson(People person) {
         PeopleExceptionHandler.validatePerson(person);
 
@@ -15,7 +19,7 @@ public class PeopleWriter {
         newPeople[people.length] = person;
         this.people = newPeople;
 
-        return people;
+        return newPeople;
     }
 
     public People[] getPeople() {

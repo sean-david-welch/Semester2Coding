@@ -18,7 +18,7 @@ public class QuickSort {
             String homeDirectory = System.getProperty("user.home");
 
             try (FileWriter writer = new FileWriter(homeDirectory + "/quickSortedPeople.csv")) {
-                writer.write("ID,Name,Age\n");
+                writer.write("ID,Name,Surname,Jon,Age,Credit\n");
 
                 for (People person : sortedPeople) {
                     writer.write(person.toString() + "\n");
