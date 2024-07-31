@@ -5,9 +5,8 @@ import java.io.FileWriter;
 import org.example.people.People;
 import org.example.people.PeopleReader;
 
-//
+// Question 1 method implementation and example
 public class BubbleSort {
-
     public static void main(String[] args) {
         try {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");

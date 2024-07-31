@@ -5,8 +5,8 @@ import org.example.people.PeopleReader;
 
 import java.io.FileWriter;
 
+// Question 3 method implementation and example
 public class QuickSort {
-
     public static void main(String[] args) {
         try {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");

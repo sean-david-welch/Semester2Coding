@@ -1,5 +1,6 @@
 package org.example.people;
 
+// Question 5 Method Implementation - See AddPerson class for executable example
 public class PeopleWriter {
     private People[] people;
 

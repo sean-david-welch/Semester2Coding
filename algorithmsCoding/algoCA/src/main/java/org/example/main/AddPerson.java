@@ -6,6 +6,7 @@ import org.example.people.PeopleWriter;
 
 import java.io.FileWriter;
 
+// Question 5 Example
 public class AddPerson {
     public static void main(String[] args) {
         try {

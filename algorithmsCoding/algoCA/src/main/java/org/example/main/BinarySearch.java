@@ -6,8 +6,8 @@ import org.example.people.PeopleReader;
 import java.util.Arrays;
 import java.util.Comparator;
 
+// Question 4 method implementation and example
 public class BinarySearch {
-
     public static void main(String[] args) {
         try {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
