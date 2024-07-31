@@ -54,7 +54,11 @@ public class QuickSort<T> {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            QuickSort<People> qs = new QuickSort<>(people, Comparator.naturalOrder());
+            Comparator<People> peopleComparator = Comparator
+                    .<People>naturalOrder()
+                    .thenComparing(People::getID);
+
+            QuickSort<People> qs = new QuickSort<>(people, peopleComparator);
 
             People[] sortedPeople = qs.quickSort(0, people.length - 1);
             String homeDirectory = System.getProperty("user.home");
