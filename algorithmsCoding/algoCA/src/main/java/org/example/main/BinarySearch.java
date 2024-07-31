@@ -8,29 +8,6 @@ import java.util.Comparator;
 
 // Question 4 method implementation and example
 public class BinarySearch {
-    public static void main(String[] args) {
-        try {
-            PeopleReader peopleReader = new PeopleReader("resources/people.csv");
-            People[] people = peopleReader.readPeople();
-
-            BinarySearch bs = new BinarySearch(people);
-
-            String columnToSearch = "name";
-            String targetValue = "Joe";
-
-            int result = bs.binarySearch(columnToSearch, targetValue);
-
-            if (result != -1) {
-                System.out.println(targetValue + " was found in the " + columnToSearch + " list");
-                System.out.println("Record details: " + people[result]);
-            } else {
-                System.out.println(targetValue + " was not found in the " + columnToSearch + " list!");
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to read people: " + e.getMessage());
-        }
-    }
-
     private final People[] people;
 
     public BinarySearch(People[] people) {
@@ -72,5 +49,28 @@ public class BinarySearch {
             }
         }
         return -1;
+    }
+
+    public static void main(String[] args) {
+        try {
+            PeopleReader peopleReader = new PeopleReader("resources/people.csv");
+            People[] people = peopleReader.readPeople();
+
+            BinarySearch bs = new BinarySearch(people);
+
+            String columnToSearch = "name";
+            String targetValue = "Joe";
+
+            int result = bs.binarySearch(columnToSearch, targetValue);
+
+            if (result != -1) {
+                System.out.println(targetValue + " was found in the " + columnToSearch + " list");
+                System.out.println("Record details: " + people[result]);
+            } else {
+                System.out.println(targetValue + " was not found in the " + columnToSearch + " list!");
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to read people: " + e.getMessage());
+        }
     }
 }

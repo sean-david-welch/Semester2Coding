@@ -7,28 +7,6 @@ import java.io.FileWriter;
 
 // Question 3 method implementation and example
 public class QuickSort {
-    public static void main(String[] args) {
-        try {
-            PeopleReader peopleReader = new PeopleReader("resources/people.csv");
-            People[] people = peopleReader.readPeople();
-
-            QuickSort qs = new QuickSort(people);
-
-            People[] sortedPeople =  qs.quickSort(0, people.length - 1);
-            String homeDirectory = System.getProperty("user.home");
-
-            try (FileWriter writer = new FileWriter(homeDirectory + "/quickSortedPeople.csv")) {
-                writer.write("ID,Name,Surname,Jon,Age,Credit\n");
-
-                for (People person : sortedPeople) {
-                    writer.write(person.toString() + "\n");
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to read people: " + e.getMessage());
-        }
-    }
-
     private final People[] people;
 
     public QuickSort(People[] people) {
@@ -63,6 +41,28 @@ public class QuickSort {
         people[i + 1] = people[high];
         people[high] = temp;
         return i + 1;
+    }
+
+    public static void main(String[] args) {
+        try {
+            PeopleReader peopleReader = new PeopleReader("resources/people.csv");
+            People[] people = peopleReader.readPeople();
+
+            QuickSort qs = new QuickSort(people);
+
+            People[] sortedPeople = qs.quickSort(0, people.length - 1);
+            String homeDirectory = System.getProperty("user.home");
+
+            try (FileWriter writer = new FileWriter(homeDirectory + "/quickSortedPeople.csv")) {
+                writer.write("ID,Name,Surname,Jon,Age,Credit\n");
+
+                for (People person : sortedPeople) {
+                    writer.write(person.toString() + "\n");
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to read people: " + e.getMessage());
+        }
     }
 
 }

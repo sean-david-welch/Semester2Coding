@@ -1,4 +1,5 @@
 package org.example.main;
+
 import java.io.FileWriter;
 
 
@@ -7,28 +8,6 @@ import org.example.people.PeopleReader;
 
 // Question 1 method implementation and example
 public class BubbleSort {
-    public static void main(String[] args) {
-        try {
-            PeopleReader peopleReader = new PeopleReader("resources/people.csv");
-            People[] people = peopleReader.readPeople();
-
-            BubbleSort bs = new BubbleSort(people);
-
-            People[] sortedPeople = bs.bubbleSort();
-            String homeDirectory = System.getProperty("user.home");
-
-            try (FileWriter writer = new FileWriter(homeDirectory + "/bubbleSortedPeople.csv")) {
-                writer.write("ID,Name,Surname,Jon,Age,Credit\n");
-
-                for (People person : sortedPeople) {
-                    writer.write(person.toString() + "\n");
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to read people: " + e.getMessage());
-        }
-    }
-
     private final People[] people;
 
     public BubbleSort(People[] people) {
@@ -63,5 +42,27 @@ public class BubbleSort {
         }
 
         return people;
+    }
+
+    public static void main(String[] args) {
+        try {
+            PeopleReader peopleReader = new PeopleReader("resources/people.csv");
+            People[] people = peopleReader.readPeople();
+
+            BubbleSort bs = new BubbleSort(people);
+
+            People[] sortedPeople = bs.bubbleSort();
+            String homeDirectory = System.getProperty("user.home");
+
+            try (FileWriter writer = new FileWriter(homeDirectory + "/bubbleSortedPeople.csv")) {
+                writer.write("ID,Name,Surname,Jon,Age,Credit\n");
+
+                for (People person : sortedPeople) {
+                    writer.write(person.toString() + "\n");
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to read people: " + e.getMessage());
+        }
     }
 }
