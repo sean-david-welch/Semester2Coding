@@ -5,40 +5,28 @@ import org.example.people.PeopleReader;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.function.Function;
+
 
 // Question 4 method implementation and example
-public class BinarySearch {
-    private final People[] people;
+public class BinarySearch<T> {
+    private final T[] data;
 
-    public BinarySearch(People[] people) {
-        this.people = people;
+    public BinarySearch(T[] data) {
+        this.data = data;
     }
 
-    public int binarySearch(String column, String target) {
-        Comparator<People> comparator = switch (column.toLowerCase()) {
-            case "name" -> Comparator.comparing(People::getName);
-            case "surname" -> Comparator.comparing(People::getSurname);
-            case "job" -> Comparator.comparing(People::getJob);
-            case "age" -> Comparator.comparingInt(People::getAge);
-            default -> throw new IllegalArgumentException("Invalid column: " + column);
-        };
-
-        Arrays.sort(people, comparator);
+    public <U extends Comparable<U>> int binarySearch(Function<T, U> func, U target) {
+        Comparator<T> comparator = Comparator.comparing(func);
+        Arrays.sort(data, comparator);
 
         int low = 0;
-        int high = people.length - 1;
+        int high = data.length - 1;
 
         while (low <= high) {
             int mid = (low + high) / 2;
-            People midVal = people[mid];
-
-            int cmp = switch (column.toLowerCase()) {
-                case "name" -> midVal.getName().compareTo(target);
-                case "surname" -> midVal.getSurname().compareTo(target);
-                case "job" -> midVal.getJob().compareTo(target);
-                case "age" -> Integer.compare(midVal.getAge(), Integer.parseInt(target));
-                default -> throw new IllegalArgumentException("Invalid column: " + column);
-            };
+            T midVal = data[mid];
+            int cmp = func.apply(midVal).compareTo(target);
 
             if (cmp < 0) {
                 low = mid + 1;
@@ -56,12 +44,18 @@ public class BinarySearch {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            BinarySearch bs = new BinarySearch(people);
+            BinarySearch<People> bs = new BinarySearch<>(people);
 
             String columnToSearch = "name";
             String targetValue = "Joe";
 
-            int result = bs.binarySearch(columnToSearch, targetValue);
+            int result = switch (columnToSearch.toLowerCase()) {
+                case "name" -> bs.binarySearch(People::getName, targetValue);
+                case "surname" -> bs.binarySearch(People::getSurname, targetValue);
+                case "job" -> bs.binarySearch(People::getJob, targetValue);
+                case "age" -> bs.binarySearch(People::getAge, Integer.parseInt(targetValue));
+                default -> throw new IllegalArgumentException("Invalid column: " + columnToSearch);
+            };
 
             if (result != -1) {
                 System.out.println(targetValue + " was found in the " + columnToSearch + " list");
