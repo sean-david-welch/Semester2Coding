@@ -1,36 +1,35 @@
 package org.example.main;
 
 import java.io.FileWriter;
-
+import java.util.Comparator;
 
 import org.example.people.People;
 import org.example.people.PeopleReader;
 
 // Question 1 method implementation and example
-public class BubbleSort {
-    private final People[] people;
+public class BubbleSort<T> {
+    private final T[] data;
+    private final Comparator<? super T> comparator;
 
-    public BubbleSort(People[] people) {
-        this.people = people;
+    public BubbleSort(T[] data, Comparator<? super T> comparator) {
+        this.data = data;
+        this.comparator = comparator;
     }
 
-    public People[] bubbleSort() {
-        int n = this.people.length;
+    public T[] bubbleSort() {
+        int n = this.data.length;
         boolean swapped;
 
         for (int i = 0; i < n - 1; i++) {
             swapped = false;
 
             for (int j = 0; j < n - i - 1; j++) {
-                int compareResult = this.people[j].compareTo(this.people[j + 1]);
-                boolean needsSwap = compareResult > 0 ||
-                        (compareResult == 0 && this.people[j].getID() > this.people[j + 1].getID());
-
-                if (needsSwap) {
+                int compareResult = comparator.compare(this.data[j], this.data[j + 1]);
+                if (compareResult > 0) {
                     // Swap elements
-                    People temp = this.people[j];
-                    this.people[j] = this.people[j + 1];
-                    this.people[j + 1] = temp;
+                    T temp = this.data[j];
+                    this.data[j] = this.data[j + 1];
+                    this.data[j + 1] = temp;
                     swapped = true;
                 }
             }
@@ -40,8 +39,7 @@ public class BubbleSort {
                 break;
             }
         }
-
-        return people;
+        return data;
     }
 
     public static void main(String[] args) {
@@ -49,11 +47,14 @@ public class BubbleSort {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            BubbleSort bs = new BubbleSort(people);
+            Comparator<People> peopleComparator = Comparator
+                .<People>naturalOrder()
+                .thenComparing(People::getID);
 
+            BubbleSort<People> bs = new BubbleSort<>(people, peopleComparator);
             People[] sortedPeople = bs.bubbleSort();
-            String homeDirectory = System.getProperty("user.home");
 
+            String homeDirectory = System.getProperty("user.home");
             try (FileWriter writer = new FileWriter(homeDirectory + "/bubbleSortedPeople.csv")) {
                 writer.write("ID,Name,Surname,Jon,Age,Credit\n");
 
