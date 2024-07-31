@@ -4,16 +4,20 @@ import org.example.people.People;
 import org.example.people.PeopleReader;
 
 import java.io.FileWriter;
+import java.util.Comparator;
 
 // Question 3 method implementation and example
-public class QuickSort {
-    private final People[] people;
+public class QuickSort<T> {
+    private final T[] data;
+    private final Comparator<? super T> comparator;
 
-    public QuickSort(People[] people) {
-        this.people = people;
+
+    public QuickSort(T[] data, Comparator<? super T> comparator) {
+        this.data = data;
+        this.comparator = comparator;
     }
 
-    public People[] quickSort(int low, int high) {
+    public T[] quickSort(int low, int high) {
         if (low < high) {
             int partition = partition(low, high);
 
@@ -21,26 +25,28 @@ public class QuickSort {
             quickSort(partition + 1, high);
         }
 
-        return people;
+        return data;
     }
 
     private int partition(int low, int high) {
-        People pivot = people[high];
+        T pivot = data[high];
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (people[j].compareTo(pivot) <= 0) {
+            if (comparator.compare(data[j], pivot) <= 0) {
                 i++;
-                People temp = people[i];
-                people[i] = people[j];
-                people[j] = temp;
+                swap(i, j);
             }
         }
 
-        People temp = people[i + 1];
-        people[i + 1] = people[high];
-        people[high] = temp;
+        swap(i + 1, high);
         return i + 1;
+    }
+
+    private void swap(int i, int j) {
+        T temp = data[i];
+        data[i] = data[j];
+        data[j] = temp;
     }
 
     public static void main(String[] args) {
@@ -48,7 +54,7 @@ public class QuickSort {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-            QuickSort qs = new QuickSort(people);
+            QuickSort<People> qs = new QuickSort<>(people, Comparator.naturalOrder());
 
             People[] sortedPeople = qs.quickSort(0, people.length - 1);
             String homeDirectory = System.getProperty("user.home");
@@ -64,5 +70,4 @@ public class QuickSort {
             System.err.println("Failed to read people: " + e.getMessage());
         }
     }
-
 }
