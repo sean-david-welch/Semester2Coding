@@ -18,6 +18,8 @@ public class People implements Comparable<People> {
         this.Credit = Credit;
     }
 
+    public People() {}
+
     @Override
     public int compareTo(People person) {
         return Integer.compare(this.Age, person.Age);
