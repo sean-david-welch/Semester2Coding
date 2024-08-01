@@ -46,7 +46,6 @@ public class BinarySearch<T> {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
 
-
             BinarySearch<People> bs = new BinarySearch<>(people);
 
             String columnToSearch = "name";

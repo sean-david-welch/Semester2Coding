@@ -9,10 +9,10 @@ import java.util.Comparator;
 // Question 3 method implementation and example
 public class QuickSort<T> {
     private final T[] data;
-    private final Comparator<? super T> comparator;
+    private final Comparator<T> comparator;
 
 
-    public QuickSort(T[] data, Comparator<? super T> comparator) {
+    public QuickSort(T[] data, Comparator<T> comparator) {
         this.data = data;
         this.comparator = comparator;
     }
