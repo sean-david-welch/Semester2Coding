@@ -10,6 +10,7 @@ import java.util.function.Function;
 
 // Question 4 method implementation and example
 public class BinarySearch<T> {
+    // generic property
     private final T[] data;
 
     public BinarySearch(T[] data) {
@@ -40,9 +41,11 @@ public class BinarySearch<T> {
     }
 
     public static void main(String[] args) {
+        // Scanner could be used to take user input of course
         try {
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
             People[] people = peopleReader.readPeople();
+
 
             BinarySearch<People> bs = new BinarySearch<>(people);
 
