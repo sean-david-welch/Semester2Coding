@@ -8,12 +8,15 @@ import java.io.FileWriter;
 
 // Question 5 Example
 public class PeopleWriter {
+    // init people
     private People[] people;
 
+    // constructor
     public PeopleWriter(People[] people) {
         this.people = people;
     }
 
+    // add person method taking in necessary column data
     public People[] addPerson(String name, String surname, String job, int age, long credit) {
         // Create a new Person object
         People person = new People();
@@ -25,7 +28,7 @@ public class PeopleWriter {
         person.setAge(age);
         person.setCredit(credit);
 
-        // Example use case of question 6 exception handler
+        // Example use case of question 6 exception handler - will validate each field in person
         PeopleExceptionHandler.validatePerson(person);
 
         // Generate a new ID
@@ -38,22 +41,28 @@ public class PeopleWriter {
         newPeople[people.length] = person;
         this.people = newPeople;
 
+        // return copied array with new person at the end with consecutive id
         return newPeople;
     }
 
     public static void main(String[] args) {
         try {
+            // init people reader and read people into memory from csv
             PeopleReader peopleReader = new PeopleReader("resources/people.csv");
-
             People[] people = peopleReader.readPeople();
-            PeopleWriter peopleWriter = new PeopleWriter(people);
 
+            // init people writer clas and add new person with approptiate values
+            // user input could be taken from scanner if necessary
+            PeopleWriter peopleWriter = new PeopleWriter(people);
             People[] newPeople = peopleWriter.addPerson("Mark", "Grant", "Manager", 33, 472132554L);
 
+            // write file to users home directory with new person
             String homeDirectory = System.getProperty("user.home");
             try (FileWriter writer = new FileWriter(homeDirectory + "/newPeople.csv")) {
+                // write header
                 writer.write("ID,Name,Surname,Job,Age,Credit\n");
 
+                // loop through new people and write with a line break
                 for (People person : newPeople) {
                     writer.write(person.toString() + "\n");
                 }
