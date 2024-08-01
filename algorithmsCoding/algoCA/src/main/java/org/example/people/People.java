@@ -1,5 +1,9 @@
 package org.example.people;
 
+/**
+ * Represents a person with various attributes such as ID, Name, Surname, Job, Age, and Credit.
+ * Implements the Comparable interface to allow for comparison based on age.
+ */
 public class People implements Comparable<People> {
     // properties
     private int ID;

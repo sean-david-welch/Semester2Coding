@@ -7,6 +7,11 @@ import java.io.FileWriter;
 import java.util.Comparator;
 
 // Question 3 method implementation and example
+/**
+ * A generic class for sorting an array using the Quick Sort algorithm.
+ *
+ * @param <T> The type of objects to be sorted.
+ */
 public class QuickSort<T> {
     // same as bubble sort - init generic data and comparator properties
     private final T[] data;
@@ -18,7 +23,13 @@ public class QuickSort<T> {
         this.comparator = comparator;
     }
 
-    // quick sort method
+    /**
+     * Sorts the array using the Quick Sort algorithm.
+     *
+     * @param low  The starting index of the portion of the array to be sorted.
+     * @param high The ending index of the portion of the array to be sorted.
+     * @return The sorted array.
+     */
     public T[] quickSort(int low, int high) {
         if (low < high) {
             // init helper method

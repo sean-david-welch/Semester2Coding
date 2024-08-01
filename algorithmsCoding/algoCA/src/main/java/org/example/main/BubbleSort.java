@@ -6,7 +6,14 @@ import java.util.Comparator;
 import org.example.people.People;
 import org.example.people.PeopleReader;
 
+
 // Question 1 method implementation and example
+
+/**
+ * A generic class for sorting an array using the Bubble Sort algorithm.
+ *
+ * @param <T> The type of objects to be sorted.
+ */
 public class BubbleSort<T> {
     // init generic properties of data and comparator
     private final T[] data;
@@ -18,7 +25,11 @@ public class BubbleSort<T> {
         this.comparator = comparator;
     }
 
-    // bubble sort method
+    /**
+     * Sorts the array using the Bubble Sort algorithm.
+     *
+     * @return The sorted array.
+     */
     public T[] bubbleSort() {
         // init length and swapped variables
         int n = this.data.length;
@@ -60,8 +71,8 @@ public class BubbleSort<T> {
             // given we have set compareTo method in People class, the natural order of comparator
             // will compare based on our desired column, in this case age, and then next ID.
             Comparator<People> peopleComparator = Comparator
-                .<People>naturalOrder()
-                .thenComparing(People::getID);
+                    .<People>naturalOrder()
+                    .thenComparing(People::getID);
 
             // init bubble sort and then sort the people returning new array
             BubbleSort<People> bs = new BubbleSort<>(people, peopleComparator);

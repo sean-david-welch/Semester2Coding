@@ -7,6 +7,10 @@ import org.example.people.PeopleReader;
 import java.io.FileWriter;
 
 // Question 5 Example
+
+/**
+ * A class for managing and writing people data.
+ */
 public class PeopleWriter {
     // init people
     private People[] people;
@@ -16,7 +20,16 @@ public class PeopleWriter {
         this.people = people;
     }
 
-    // add person method taking in necessary column data
+    /**
+     * Adds a new person to the array with the provided details.
+     *
+     * @param name    The first name of the person.
+     * @param surname The surname of the person.
+     * @param job     The job title of the person.
+     * @param age     The age of the person.
+     * @param credit  The credit amount associated with the person.
+     * @return The updated array of people including the new person.
+     */
     public People[] addPerson(String name, String surname, String job, int age, long credit) {
         // Create a new Person object
         People person = new People();

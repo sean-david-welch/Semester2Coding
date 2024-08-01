@@ -1,14 +1,23 @@
 package org.example.people;
 
 // Question 6 class implementation - example is instantiate in People Writer class
-// extends runtime exception
+
+/**
+ * Custom exception handler for validating People objects.
+ * This class extends RuntimeException and provides methods to validate
+ * various properties of People objects.
+ */
 public class PeopleExceptionHandler extends RuntimeException {
     // super method
     public PeopleExceptionHandler(String message) {
         super(message);
     }
 
-    // constroller method for all people properties/columns
+    /**
+     * Validates all properties of the given People object -- Controller method
+     *
+     * @param person The People object to validate.
+     */
     public static void validatePerson(People person) {
         validateName(person.getName());
         validateSurname(person.getSurname());

@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-// Peeople reader utility class to read people into memory from csv
+/**
+ * Utility class for reading People data from a CSV file.
+ */
 public class PeopleReader {
     // file path property
     private final String filePath;
@@ -15,7 +17,11 @@ public class PeopleReader {
         this.filePath = filePath;
     }
 
-    // method to read csv
+    /**
+     * Reads People data from the CSV file and loads it into an array.
+     *
+     * @return An array of People objects read from the CSV file.
+     */
     public People[] readPeople() {
         // init properties of file path and file name
         File directory = new File(filePath);
@@ -45,7 +51,7 @@ public class PeopleReader {
                             Integer.parseInt(data[4]),
                             Long.parseLong(data[5])
                     );
-                // catch exceptions
+                    // catch exceptions
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                     System.err.println("Error parsing line: " + line);
                     System.err.println("Error details: " + e.getMessage());

@@ -9,6 +9,12 @@ import java.util.function.Function;
 
 
 // Question 4 method implementation and example
+
+/**
+ * A generic class for performing binary search on an array.
+ *
+ * @param <T> The type of objects in the array.
+ */
 public class BinarySearch<T> {
     // generic property
     private final T[] data;
@@ -18,10 +24,14 @@ public class BinarySearch<T> {
         this.data = data;
     }
 
-    // binary search method
-    // generic type U extends the comparable key which is taken from the data
-    // we pass a generic callback function with T, U in order to implement our comparison on people
-    // the target is of type U
+    /**
+     * Performs a binary search on the array for a specified target value.
+     *
+     * @param func   A function to extract a comparable key from each element in the array.
+     * @param target The target value to search for, of type U.
+     * @param <U>    The type of the comparable key extracted from the elements.
+     * @return The index of the target value in the array, or -1 if not found.
+     */
     public <U extends Comparable<U>> int binarySearch(Function<T, U> func, U target) {
         // init comparator with callback function and sort array based on comparator
         Comparator<T> comparator = Comparator.comparing(func);
@@ -43,11 +53,11 @@ public class BinarySearch<T> {
             // if difference less than 0 were too low
             if (cmp < 0) {
                 low = mid + 1;
-            // if greater than zero were too high
+                // if greater than zero were too high
             } else if (cmp > 0) {
                 high = mid - 1;
             } else {
-            // goldilocks zone were just right
+                // goldilocks zone were just right
                 return mid;
             }
         }
