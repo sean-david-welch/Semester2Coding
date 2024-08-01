@@ -1,6 +1,7 @@
 package org.example.people;
 
 public class People implements Comparable<People> {
+    // properties
     private int ID;
     private String Name;
     private String Surname;
@@ -18,13 +19,16 @@ public class People implements Comparable<People> {
         this.Credit = Credit;
     }
 
+    // no args constructor
     public People() {}
 
+    // override compare to method, which will allow for easy comparisons in algorithm classes
     @Override
     public int compareTo(People person) {
         return Integer.compare(this.Age, person.Age);
     }
 
+    // to string method for easy writing
     @Override
     public String toString() {
         return (
