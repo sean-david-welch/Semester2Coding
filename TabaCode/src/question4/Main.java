@@ -19,8 +19,7 @@ public class Main {
         foodTree.add(new FoodProduct("Yogurt", 1.49, 4));
 
         // Print the tree in-order to see sorted food products
-        System.out.println("In-order traversal of food products:");
-        foodTree.inOrderTraversal();
+        System.out.println("In-order traversal of food products: \n");
 
         // Find the best and worst food products
         System.out.println("Best food product: " + foodTree.findBest());

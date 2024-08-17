@@ -19,7 +19,7 @@ public class BinaryTreeImpl<T extends Comparable<T>> implements BinaryTree<T> {
     // Add a node to the tree
     @Override
     public void add(T item) {
-        root = addRecursive(root, item);
+        root = add(root, item);
         size++;
     }
 
@@ -35,7 +35,7 @@ public class BinaryTreeImpl<T extends Comparable<T>> implements BinaryTree<T> {
         if (isEmpty()) {
             throw new IllegalStateException("Tree is empty");
         }
-        return findMinRecursive(root).data;
+        return findMin(root).data;
     }
 
     // Find the worst food product (the node with the highest index)
@@ -44,37 +44,28 @@ public class BinaryTreeImpl<T extends Comparable<T>> implements BinaryTree<T> {
         if (isEmpty()) {
             throw new IllegalStateException("Tree is empty");
         }
-        return findMaxRecursive(root).data;
+        return findMax(root).data;
     }
 
-    private BTNode<T> findMaxRecursive(BTNode<T> node) {
-        return node.right == null ? node : findMaxRecursive(node.right);
-    }
-
-    // Utility Methods
-    public void inOrderTraversal(BTNode<T> node) {
-        if (node != null) {
-            inOrderTraversal(node.left);
-            System.out.print(node.data + " ");
-            inOrderTraversal(node.right);
-        }
-    }
-
-    private BTNode<T> addRecursive(BTNode<T> node, T item) {
+    private BTNode<T> add(BTNode<T> node, T item) {
         if (node == null) {
             return new BTNode<>(item);
         }
 
         if (item.compareTo(node.data) < 0) {
-            node.left = addRecursive(node.left, item);
+            node.left = add(node.left, item);
         } else {
-            node.right = addRecursive(node.right, item);
+            node.right = add(node.right, item);
         }
         return node;
     }
 
-    private BTNode<T> findMinRecursive(BTNode<T> node) {
-        return node.left == null ? node : findMinRecursive(node.left);
+    private BTNode<T> findMin(BTNode<T> node) {
+        return node.left == null ? node : findMin(node.left);
+    }
+
+    private BTNode<T> findMax(BTNode<T> node) {
+        return node.right == null ? node : findMax(node.right);
     }
 }
 
