@@ -8,7 +8,7 @@ import java.util.Objects;
 public class LatexValidator {
 
     public static void latexValidator(String filename) {
-        Stack<String> stack = new Stack<>(100);
+        Stack stack = new Stack(100);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -25,7 +25,13 @@ public class LatexValidator {
                         System.out.println("Error: Unmatched \\end tag at line " + lineNumber);
                         return;
                     } else {
-                        stack.pop();
+                        String topElement = (String) stack.peek();
+                        if (topElement.equals("\\begin")) {
+                            stack.pop();
+                        } else {
+                            System.out.println("Error: Unmatched \\end tag at line " + lineNumber);
+                            return;
+                        }
                     }
                 }
             }
