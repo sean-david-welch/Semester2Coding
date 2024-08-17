@@ -1,8 +1,8 @@
 package question3.part1;
 
-public class Stack<T> {
+public class Stack {
 
-    private final T[] elements;
+    private final Object[] elements;
     private int top;
     private final int capacity;
 
@@ -11,11 +11,11 @@ public class Stack<T> {
             throw new IllegalArgumentException("Capacity must be positive");
         }
         this.capacity = capacity;
-        elements = (T[]) new Object[capacity];
+        elements = new Object[capacity];
         top = -1;
     }
 
-    public void push(T element) {
+    public void push(Object element) {
         if (top == capacity) {
             throw new IllegalStateException("question3.part1.Stack is full");
         }
@@ -29,7 +29,7 @@ public class Stack<T> {
         elements[top--] = null;
     }
 
-    public T peek() {
+    public Object peek() {
         if (isEmpty()) {
             throw new IllegalStateException("question3.part1.Stack is empty");
         }
