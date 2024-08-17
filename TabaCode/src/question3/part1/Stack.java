@@ -22,13 +22,11 @@ public class Stack<T> {
         elements[++top] = element;
     }
 
-    public T pop() {
+    public void pop() {
         if (isEmpty()) {
             throw new IllegalStateException("question3.part1.Stack is empty");
         }
-        T element = elements[top];
         elements[top--] = null;
-        return element;
     }
 
     public T peek() {
