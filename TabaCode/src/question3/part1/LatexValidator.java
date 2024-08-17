@@ -41,10 +41,10 @@ public class LatexValidator {
     }
 
     public static void main(String[] args) {
-        String filename = Objects.requireNonNull(LatexValidator.class.getResource("/latex.txt")).getPath();
+        String filename = Objects.requireNonNull(LatexValidator.class.getResource("/resources/latex.txt")).getPath();
         latexValidator(filename);
 
-        String filename2 = Objects.requireNonNull(LatexValidator.class.getResource("/invalidLatex.txt")).getPath();
+        String filename2 = Objects.requireNonNull(LatexValidator.class.getResource("/resources/invalidLatex.txt")).getPath();
         latexValidator(filename2);
     }
 }
