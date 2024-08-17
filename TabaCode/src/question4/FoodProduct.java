@@ -1,9 +1,9 @@
 package question4;
 
 public class FoodProduct implements Comparable<FoodProduct> {
-    private final String name;
-    private final double price;
-    private final int healthyEatingIndex;
+    public final String name;
+    public final double price;
+    public final int healthyEatingIndex;
 
     public FoodProduct(String name, double price, int healthyEatingIndex) {
         this.name = name;
