@@ -1,4 +1,4 @@
-package question3;
+package question3.part2;
 
 public class QueueImpl<T> implements Queue<T> {
     private Node<T> front;

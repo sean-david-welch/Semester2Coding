@@ -1,4 +1,4 @@
-package question3;
+package question3.part2;
 
 public interface Queue<T> {
     void enqueue(T item);

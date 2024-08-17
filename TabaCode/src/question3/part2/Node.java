@@ -1,4 +1,4 @@
-package question3;
+package question3.part2;
 
 class Node<T> {
     T data;
