@@ -1,4 +1,4 @@
-package question3;
+package question3.part1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

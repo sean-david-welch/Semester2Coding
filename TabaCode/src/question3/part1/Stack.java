@@ -1,4 +1,4 @@
-package question3;
+package question3.part1;
 
 public class Stack<T> {
 
@@ -17,14 +17,14 @@ public class Stack<T> {
 
     public void push(T element) {
         if (top == capacity) {
-            throw new IllegalStateException("question3.Stack is full");
+            throw new IllegalStateException("question3.part1.Stack is full");
         }
         elements[++top] = element;
     }
 
     public T pop() {
         if (isEmpty()) {
-            throw new IllegalStateException("question3.Stack is empty");
+            throw new IllegalStateException("question3.part1.Stack is empty");
         }
         T element = elements[top];
         elements[top--] = null;
@@ -33,7 +33,7 @@ public class Stack<T> {
 
     public T peek() {
         if (isEmpty()) {
-            throw new IllegalStateException("question3.Stack is empty");
+            throw new IllegalStateException("question3.part1.Stack is empty");
         }
         return elements[top];
     }
