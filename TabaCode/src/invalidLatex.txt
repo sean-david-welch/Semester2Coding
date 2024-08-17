@@ -1,0 +1,9 @@
+\begin{document}
+    Some text here
+    \begin{itemize}
+        \item First item
+        \begin{description}
+            \item First description
+        \end{description}
+    \begin{itemize}  % Missing \end{itemize}
+\end{document}
