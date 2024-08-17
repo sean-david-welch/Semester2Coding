@@ -1,12 +1,12 @@
 package question4;
 
 // BTNode class with generic type T
-class Node<T> {
+class BTNode<T> {
     T data;
-    Node<T> left;
-    Node<T> right;
+    BTNode<T> left;
+    BTNode<T> right;
 
-    public Node(T data) {
+    public BTNode(T data) {
         this.data = data;
         this.left = null;
         this.right = null;
