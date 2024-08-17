@@ -1,27 +1,6 @@
 package question4;
 
-public class FoodProduct implements Comparable<FoodProduct> {
-    public final String name;
-    public final double price;
-    public final int healthyEatingIndex;
-
-    public FoodProduct(String name, double price, int healthyEatingIndex) {
-        this.name = name;
-        this.price = price;
-        this.healthyEatingIndex = healthyEatingIndex;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public int getHealthyEatingIndex() {
-        return healthyEatingIndex;
-    }
+public record FoodProduct(String name, double price, int healthyEatingIndex) implements Comparable<FoodProduct> {
 
     @Override
     public int compareTo(FoodProduct other) {
