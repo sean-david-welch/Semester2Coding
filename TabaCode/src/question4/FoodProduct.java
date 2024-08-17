@@ -1,5 +1,6 @@
 package question4;
 
+// record for food product
 public record FoodProduct(String name, double price, int healthyEatingIndex) implements Comparable<FoodProduct> {
 
     @Override

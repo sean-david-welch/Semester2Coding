@@ -47,6 +47,7 @@ public class BinaryTreeImpl<T extends Comparable<T>> implements BinaryTree<T> {
         return findMax(root).data;
     }
 
+    // internal method to add
     private BTNode<T> add(BTNode<T> node, T item) {
         if (node == null) {
             return new BTNode<>(item);
@@ -60,10 +61,12 @@ public class BinaryTreeImpl<T extends Comparable<T>> implements BinaryTree<T> {
         return node;
     }
 
+    // find minimum
     private BTNode<T> findMin(BTNode<T> node) {
         return node.left == null ? node : findMin(node.left);
     }
 
+    // find mac
     private BTNode<T> findMax(BTNode<T> node) {
         return node.right == null ? node : findMax(node.right);
     }

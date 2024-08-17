@@ -1,16 +1,19 @@
 package question3.part2;
 
 public class QueueImpl<T> implements Queue<T> {
+    // init queue properties
     private Node<T> front;
     private Node<T> rear;
     private int size;
 
+    // constructor
     public QueueImpl() {
         front = null;
         rear = null;
         size = 0;
     }
 
+    // override methods
     @Override
     public void enqueue(T item) {
         Node<T> newNode = new Node<>(item);
@@ -45,6 +48,7 @@ public class QueueImpl<T> implements Queue<T> {
         return front.data;
     }
 
+    // simple to string
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
@@ -64,6 +68,7 @@ public class QueueImpl<T> implements Queue<T> {
         return size;
     }
 
+    // test
     public static void main(String[] args) {
         QueueImpl<String> tagQueue = new QueueImpl<>();
 
