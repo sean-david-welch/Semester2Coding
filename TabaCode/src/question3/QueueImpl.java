@@ -63,4 +63,24 @@ public class QueueImpl<T> implements Queue<T> {
     public int size() {
         return size;
     }
+
+    public static void main(String[] args) {
+        QueueImpl<String> tagQueue = new QueueImpl<>();
+
+        tagQueue.enqueue("\\begin");
+        tagQueue.enqueue("\\end");
+        tagQueue.enqueue("\\begin");
+        tagQueue.enqueue("\\end");
+
+        System.out.println("Queue: " + tagQueue);
+
+        System.out.println("Peek: " + tagQueue.peek());
+
+        System.out.println("Dequeued: " + tagQueue.dequeue());
+        System.out.println("Dequeued: " + tagQueue.dequeue());
+
+        System.out.println("Queue: " + tagQueue);
+
+        System.out.println("Queue size: " + tagQueue.size());
+    }
 }
