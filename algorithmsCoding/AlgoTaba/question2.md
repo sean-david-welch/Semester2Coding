@@ -3,15 +3,15 @@
 ## Explanation
 
 ####
-The code for part a uses multithreading in order to achieve a more efficient processing speed.
-Multithreading refers to the process of using multiple cores on a CPU in order to run tasks in parrallel to eachother.
-To do this, I have implemented the use of an Executor Service to manage the threads which automates the submitting of tasks to the queue.
-We Then pool together these threads in the thread pool to avoid creating a new thread everytime a task is to be executed in the queue.
-The future tasks are implemented as a callable object which are added to a map along with index to represent each statistic or their future asynchronous result.
-A concurrent hashmap is then used to store the computed statistics in a thread safe manner.
+* The code for part a uses multithreading in order to achieve a more efficient processing speed.
+* Multithreading refers to the process of using multiple cores on a CPU in order to run tasks in parrallel to eachother.
+* To do this, I have implemented the use of an Executor Service to manage the threads which automates the submitting of tasks to the queue.
+* We Then pool together these threads in the thread pool to avoid creating a new thread everytime a task is to be executed in the queue.
+* The future tasks are implemented as a callable object which are added to a map along with index to represent each statistic or their future asynchronous result.
+* A concurrent hashmap is then used to store the computed statistics in a thread safe manner. This was crucial to increasing performance as I'm working on an 8Core M2 Macbook Air, with a programme running 10 threads of execution
 
-In the single threaded version of the method, we are simply adding each future result to the statistics array in a loop.
-The code below and test results show the outcome of both operations, with the results showing that the async approach is on average 1.5x faster.
+* In the single threaded version of the method, we are simply adding each future result to the statistics array in a loop.
+* The code below and test results show the outcome of both operations, with the results showing that the async approach is on average 1.5x faster.
 #### 
 
 --------------------------------------------------------------
