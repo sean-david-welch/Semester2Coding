@@ -7,9 +7,9 @@ public class ManageProducts {
 
     // Part A
     public void readAndPrintFile(String filePath) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader inputFile = new BufferedReader(new FileReader(filePath))) {
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = inputFile.readLine()) != null) {
                 System.out.println(line);
             }
         } catch (IOException e) {
@@ -19,17 +19,17 @@ public class ManageProducts {
 
     // Part B
     public void writeMissingDepartment(String inputFilePath, String outputFilePath) {
-        try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
-             BufferedWriter bw = new BufferedWriter(new FileWriter(outputFilePath))) {
+        try (BufferedReader inputFile = new BufferedReader(new FileReader(inputFilePath));
+             BufferedWriter outputFile = new BufferedWriter(new FileWriter(outputFilePath))) {
 
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = inputFile.readLine()) != null) {
                 String[] fields = line.split(",");
                 String department = fields[3];
 
                 if (department == null || department.trim().isEmpty()) {
-                    bw.write(line);
-                    bw.newLine();
+                    outputFile.write(line);
+                    outputFile.newLine();
                 }
             }
         } catch (IOException e) {
@@ -39,17 +39,17 @@ public class ManageProducts {
 
     // Part D
     public void writePlasticProducts(String inputFilePath, String outputFilePath) {
-        try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
-             BufferedWriter bw = new BufferedWriter(new FileWriter(outputFilePath))) {
+        try (BufferedReader inputFile = new BufferedReader(new FileReader(inputFilePath));
+             BufferedWriter outputFile = new BufferedWriter(new FileWriter(outputFilePath))) {
 
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = inputFile.readLine()) != null) {
                 String[] fields = line.split(",");
                 String material = fields[2];
 
                 if ("Plastic".equalsIgnoreCase(material.trim())) {
-                    bw.write(line);
-                    bw.newLine();
+                    outputFile.write(line);
+                    outputFile.newLine();
                 }
             }
         } catch (IOException e) {
@@ -61,6 +61,6 @@ public class ManageProducts {
         ManageProducts mp = new ManageProducts();
         mp.readAndPrintFile("products.txt");
         mp.writeMissingDepartment("products.txt", "MissingDepartment.txt");
-        mp.writePlasticProducts("products.txt", "PlasticProducts.txt");
+        mp.writePlasticProducts("products.txt", "plastic_products.txt");
     }
 }
