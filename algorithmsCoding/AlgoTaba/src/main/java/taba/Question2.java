@@ -1,9 +1,6 @@
 package taba;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.*;
 
 public class Question2 {
@@ -30,7 +27,7 @@ public class Question2 {
 
         // Compute statistics for each drawer on the main thread (single-threaded)
         for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
-            DrawerStatistics stats = new DrawerWorker(drawers.get(i)).call(); // Directly call the `call()` method
+            DrawerStatistics stats = new DrawerWorker(drawers.get(i)).call();
             System.out.println("Drawer " + (char) ('A' + i) + ": " + stats);
             drawerStatisticsList.add(stats);
         }
@@ -38,25 +35,28 @@ public class Question2 {
         return drawerStatisticsList;
     }
 
-   // Method to compute statistics for each drawer in separate threads
-    public static List<DrawerStatistics> computeStatisticsAsync(List<List<Integer>> drawers) {
-        List<DrawerStatistics> drawerStatisticsList = new ArrayList<>();
+    public static Map<Integer, DrawerStatistics> computeStatisticsAsync(List<List<Integer>> drawers) {
+        // ConcurrentHashMap allows safe concurrent modifications
+        Map<Integer, DrawerStatistics> drawerStatisticsMap = new ConcurrentHashMap<>();
 
         try (ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) {
             // Submit tasks to compute statistics for each drawer
-            List<Future<DrawerStatistics>> futures = new ArrayList<>(NUMBER_OF_DRAWERS);
+            List<Future<Map.Entry<Integer, DrawerStatistics>>> futures = new ArrayList<>(NUMBER_OF_DRAWERS);
             for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
-                futures.add(executorService.submit(new DrawerWorker(drawers.get(i))));
+                int drawerIndex = i;
+                futures.add(executorService.submit(() -> {
+                    DrawerStatistics stats = new DrawerWorker(drawers.get(drawerIndex)).call();
+                    return Map.entry(drawerIndex, stats);  // Return the index and stats as an entry
+                }));
             }
 
-            // Retrieve the results and add them to the list
-            for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
+            // Retrieve the results and add them to the map
+            for (Future<Map.Entry<Integer, DrawerStatistics>> future : futures) {
                 try {
-                    DrawerStatistics stats = futures.get(i).get();
-                    System.out.println("Drawer " + (char) ('A' + i) + ": " + stats);
-                    drawerStatisticsList.add(stats);
+                    Map.Entry<Integer, DrawerStatistics> entry = future.get();
+                    drawerStatisticsMap.put(entry.getKey(), entry.getValue()); // Store by drawer index
                 } catch (InterruptedException | ExecutionException e) {
-                    System.err.println("Error processing drawer " + (char) ('A' + i));
+                    System.err.println("Error processing drawer " + e.getMessage());
                     logger.log(System.Logger.Level.ERROR, "An error occurred!", e.getMessage());
                 }
             }
@@ -64,8 +64,9 @@ public class Question2 {
             System.err.println("Unexpected error: " + e.getMessage());
         }
 
-        return drawerStatisticsList;
+        return drawerStatisticsMap;
     }
+
 
     public static void presentTotals(List<DrawerStatistics> drawerStatisticsList) {
         int grandTotalSum = 0;
@@ -97,10 +98,10 @@ public class Question2 {
         List<List<Integer>> drawers = generateData();
 
         // Compute statistics for each drawer
-        List<DrawerStatistics> drawerStatisticsList = computeStatisticsAsync(drawers);
+        Map<Integer, DrawerStatistics> drawerStatisticsList = computeStatisticsAsync(drawers);
 
         // Compute and present grand statistics
-        presentTotals(drawerStatisticsList);
+//        presentTotals(drawerStatisticsList);
     }
 }
 
