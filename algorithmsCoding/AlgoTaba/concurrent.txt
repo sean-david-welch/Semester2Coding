@@ -1,9 +1,15 @@
-Multithreading: The code uses an ExecutorService with a fixed thread pool (Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) that submits tasks for each drawer, ensuring that 10 threads are working concurrently (one for each drawer).
+Multithreading: The code uses an ExecutorService with a fixed thread pool
+(Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) that submits tasks for each drawer,
+ensuring that 10 threads are working concurrently (one for each drawer).
 
-Per-drawer computation: Each thread calls DrawerWorker(drawers.get(drawerIndex)).call(), where DrawerWorker is expected to compute the required statistics (sum, average, max, min) for the assigned drawer.
+Per-drawer computation: Each thread calls DrawerWorker(drawers.get(drawerIndex)).call(),
+where DrawerWorker is expected to compute the required statistics (sum, average, max, min) for the assigned drawer.
 
-Efficient parallel computation: By using an ExecutorService with 10 threads, each drawer’s statistics are computed in parallel, improving efficiency compared to a sequential (single-threaded) approach.
+Efficient parallel computation: By using an ExecutorService with 10 threads,
+each drawer’s statistics are computed in parallel, improving efficiency compared to a sequential (single-threaded) approach.
 
-Safe concurrent access: The code uses a ConcurrentHashMap to safely store the computed statistics from multiple threads without needing to synchronize access explicitly.
+Safe concurrent access: The code uses a ConcurrentHashMap to safely store the computed statistics
+ from multiple threads without needing to synchronize access explicitly.
 
-Collecting results: The statistics are gathered for each drawer, and the results are stored in the drawerStatisticsMap, which maps each drawer index to its corresponding statistics.
+Collecting results: The statistics are gathered for each drawer,
+and the results are stored in the drawerStatisticsMap, which maps each drawer index to its corresponding statistics.
