@@ -54,7 +54,8 @@ public class Question2 {
             for (Future<Map.Entry<Integer, DrawerStatistics>> future : futures) {
                 try {
                     Map.Entry<Integer, DrawerStatistics> entry = future.get();
-                    drawerStatisticsMap.put(entry.getKey(), entry.getValue()); // Store by drawer index
+                    // Store by drawer index
+                    drawerStatisticsMap.put(entry.getKey(), entry.getValue());
                 } catch (InterruptedException | ExecutionException e) {
                     System.err.println("Error processing drawer " + e.getMessage());
                     logger.log(System.Logger.Level.ERROR, "An error occurred!", e.getMessage());
@@ -67,19 +68,18 @@ public class Question2 {
         return drawerStatisticsMap;
     }
 
-
-    public static void presentTotals(List<DrawerStatistics> drawerStatisticsList) {
+    public static void presentTotals(Map<Integer, DrawerStatistics> drawerStatisticsMap) {
         int grandTotalSum = 0;
         int grandMax = Integer.MIN_VALUE;
         int grandMin = Integer.MAX_VALUE;
         int totalRecordCount = 0;
 
-        // Compute grand total, max, min
-        for (DrawerStatistics stats : drawerStatisticsList) {
+        // Compute grand total, max, min using values from the Map
+        for (DrawerStatistics stats : drawerStatisticsMap.values()) {
             grandTotalSum += stats.sum();
             grandMax = Math.max(grandMax, stats.max());
             grandMin = Math.min(grandMin, stats.min());
-            totalRecordCount += RECORDS_PER_DRAWER; // Since each drawer has the same number of records
+            totalRecordCount += RECORDS_PER_DRAWER;
         }
 
         double grandAverage = grandTotalSum / (double) totalRecordCount;
@@ -92,7 +92,6 @@ public class Question2 {
         System.out.println("Min: " + grandMin);
     }
 
-
     public static void main(String[] args) {
         // Generate data for 10 drawers
         List<List<Integer>> drawers = generateData();
@@ -100,8 +99,8 @@ public class Question2 {
         // Compute statistics for each drawer
         Map<Integer, DrawerStatistics> drawerStatisticsList = computeStatisticsAsync(drawers);
 
-        // Compute and present grand statistics
-//        presentTotals(drawerStatisticsList);
+        // Compute and present total statistics
+        presentTotals(drawerStatisticsList);
     }
 }
 
