@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ClientCode {
+public class Question2 {
     static List<List<Integer>> drawers = new ArrayList<>(10);
 
     public static List<List<Integer>> generateData() {
