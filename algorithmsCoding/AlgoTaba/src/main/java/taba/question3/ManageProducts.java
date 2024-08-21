@@ -36,12 +36,31 @@ public class ManageProducts {
         } catch (IOException e) {
             logger.log(System.Logger.Level.ERROR, "An error occurred!", e.getMessage());
         }
+    }
 
+    public void writePlasticProductsToFile(String inputFilePath, String outputFilePath) {
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(outputFilePath))) {
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] fields = line.split(",");
+                String material = fields[2];
+
+                if ("Plastic".equalsIgnoreCase(material.trim())) {
+                    bw.write(line);
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e) {
+            logger.log(System.Logger.Level.ERROR, "An error occurred!", e.getMessage());
+        }
     }
 
     public static void main(String[] args) {
         ManageProducts mp = new ManageProducts();
         mp.readAndPrintFile("products.txt");
         mp.writeMissingDepartmentToFile("products.txt", "MissingDepartment.txt");
+        mp.writePlasticProductsToFile("products.txt", "PlasticProducts.txt");
     }
 }
