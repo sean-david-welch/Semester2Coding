@@ -1,4 +1,4 @@
-package taba;
+package taba.question2;
 
 import java.util.*;
 import java.util.concurrent.*;
