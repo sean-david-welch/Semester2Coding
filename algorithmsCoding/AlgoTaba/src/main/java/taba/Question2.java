@@ -58,7 +58,29 @@ public class Question2 {
         return drawerStatisticsList;
     }
 
+    public static void presentTotals(List<DrawerStatistics> drawerStatisticsList) {
+        int grandTotalSum = 0;
+        int grandMax = Integer.MIN_VALUE;
+        int grandMin = Integer.MAX_VALUE;
+        int totalRecordCount = 0;
 
+        // Compute grand total, max, min
+        for (DrawerStatistics stats : drawerStatisticsList) {
+            grandTotalSum += stats.sum();
+            grandMax = Math.max(grandMax, stats.max());
+            grandMin = Math.min(grandMin, stats.min());
+            totalRecordCount += RECORDS_PER_DRAWER; // Since each drawer has the same number of records
+        }
+
+        double grandAverage = grandTotalSum / (double) totalRecordCount;
+
+        // Present the grand statistics
+        System.out.println("\nGrand Statistics:");
+        System.out.println("Total Sum: " + grandTotalSum);
+        System.out.println("Average: " + grandAverage);
+        System.out.println("Max: " + grandMax);
+        System.out.println("Min: " + grandMin);
+    }
 
 
     public static void main(String[] args) {
