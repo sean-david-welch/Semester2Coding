@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class Question2 {
     private static final int NUMBER_OF_DRAWERS = 10; // Constant for the number of drawers
@@ -29,24 +26,22 @@ public class Question2 {
     }
 
     public static List<DrawerStatistics> computeStatisticsSync(List<List<Integer>> drawers) {
-    List<DrawerStatistics> drawerStatisticsList = new ArrayList<>();
+        List<DrawerStatistics> drawerStatisticsList = new ArrayList<>();
 
-    // Compute statistics for each drawer on the main thread (single-threaded)
-    for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
-        DrawerStatistics stats = new DrawerWorker(drawers.get(i)).call(); // Directly call the `call()` method
-        System.out.println("Drawer " + (char) ('A' + i) + ": " + stats);
-        drawerStatisticsList.add(stats);
+        // Compute statistics for each drawer on the main thread (single-threaded)
+        for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
+            DrawerStatistics stats = new DrawerWorker(drawers.get(i)).call(); // Directly call the `call()` method
+            System.out.println("Drawer " + (char) ('A' + i) + ": " + stats);
+            drawerStatisticsList.add(stats);
+        }
+
+        return drawerStatisticsList;
     }
 
-    return drawerStatisticsList;
-}
-
-
-    // Method to compute statistics for each drawer in separate threads
+   // Method to compute statistics for each drawer in separate threads
     public static List<DrawerStatistics> computeStatisticsAsync(List<List<Integer>> drawers) {
         List<DrawerStatistics> drawerStatisticsList = new ArrayList<>();
 
-        // Create an ExecutorService to manage 10 threads, use try-with-resources to ensure proper shutdown
         try (ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) {
             // Submit tasks to compute statistics for each drawer
             List<Future<DrawerStatistics>> futures = new ArrayList<>(NUMBER_OF_DRAWERS);
