@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Map;
 
 class Question2Test {
 
@@ -14,7 +15,7 @@ class Question2Test {
 
         // Measure time for multithreaded execution
         long asyncStartTime = System.nanoTime();
-        List<DrawerStatistics> asyncResults = Question2.computeStatisticsAsync(drawers);
+        Map<Integer, DrawerStatistics> asyncResults = Question2.computeStatisticsAsync(drawers);
         long asyncEndTime = System.nanoTime();
         long asyncDuration = asyncEndTime - asyncStartTime;
 
@@ -27,11 +28,12 @@ class Question2Test {
         // Ensure both methods return the same results
         assertEquals(synchronousResults.size(), asyncResults.size(), "Both methods should produce same number of results");
 
-        // You can also compare that async results match sync results exactly
-        // Defer printing until after timing measurement to avoid skewing results
+        // Print results to console
         System.out.println("\nTime taken by async version: " + asyncDuration + " ns");
         System.out.println("Time taken by synchronous version: " + synchronousDuration + " ns");
         System.out.println("\nEfficiency comparison:");
         System.out.println("Async execution is " + (synchronousDuration / (double) asyncDuration) + " times faster");
+
+        assertTrue(asyncDuration < synchronousDuration, "Async execution should be faster, or at least not much slower.");
     }
 }
