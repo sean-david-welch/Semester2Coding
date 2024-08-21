@@ -1,13 +1,11 @@
 package taba.question3;
 
-import taba.question2.Question2;
-
 import java.io.*;
 
 public class ManageProducts {
     private static final System.Logger logger = System.getLogger(ManageProducts.class.getName());
 
-
+    // Part A
     public void readAndPrintFile(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -19,7 +17,8 @@ public class ManageProducts {
         }
     }
 
-    public void writeMissingDepartmentToFile(String inputFilePath, String outputFilePath) {
+    // Part B
+    public void writeMissingDepartment(String inputFilePath, String outputFilePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
              BufferedWriter bw = new BufferedWriter(new FileWriter(outputFilePath))) {
 
@@ -38,7 +37,8 @@ public class ManageProducts {
         }
     }
 
-    public void writePlasticProductsToFile(String inputFilePath, String outputFilePath) {
+    // Part D
+    public void writePlasticProducts(String inputFilePath, String outputFilePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
              BufferedWriter bw = new BufferedWriter(new FileWriter(outputFilePath))) {
 
@@ -60,7 +60,7 @@ public class ManageProducts {
     public static void main(String[] args) {
         ManageProducts mp = new ManageProducts();
         mp.readAndPrintFile("products.txt");
-        mp.writeMissingDepartmentToFile("products.txt", "MissingDepartment.txt");
-        mp.writePlasticProductsToFile("products.txt", "PlasticProducts.txt");
+        mp.writeMissingDepartment("products.txt", "MissingDepartment.txt");
+        mp.writePlasticProducts("products.txt", "PlasticProducts.txt");
     }
 }
