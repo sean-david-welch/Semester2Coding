@@ -28,6 +28,39 @@ public class Question2 {
         return drawers;
     }
 
+    // Method to compute statistics for each drawer in separate threads
+    public static List<DrawerStatistics> computeStatistics(List<List<Integer>> drawers) {
+        List<DrawerStatistics> drawerStatisticsList = new ArrayList<>();
+
+        // Create an ExecutorService to manage 10 threads, use try-with-resources to ensure proper shutdown
+        try (ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) {
+            // Submit tasks to compute statistics for each drawer
+            List<Future<DrawerStatistics>> futures = new ArrayList<>(NUMBER_OF_DRAWERS);
+            for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
+                futures.add(executorService.submit(new DrawerWorker(drawers.get(i))));
+            }
+
+            // Retrieve the results and add them to the list
+            for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
+                try {
+                    DrawerStatistics stats = futures.get(i).get();
+                    System.out.println("Drawer " + (char) ('A' + i) + ": " + stats);
+                    drawerStatisticsList.add(stats);
+                } catch (InterruptedException | ExecutionException e) {
+                    System.err.println("Error processing drawer " + (char) ('A' + i));
+                    logger.log(System.Logger.Level.ERROR, "An error occurred!", e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Unexpected error: " + e.getMessage());
+        }
+
+        return drawerStatisticsList;
+    }
+
+
+
+
     public static void main(String[] args) {
         // Generate data for 10 drawers
         List<List<Integer>> drawers = generateData();
