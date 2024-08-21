@@ -46,7 +46,6 @@ public class ManageProductsTest {
 
         List<String> lines = Files.readAllLines(path);
         assertEquals(lines.size(), 5, "Should be 5 missing departments");
-
     }
 
     @Test

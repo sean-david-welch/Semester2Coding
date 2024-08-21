@@ -14,7 +14,7 @@ class Question2Test {
         // Generate data for 10 drawers
         List<List<Integer>> drawers = Question2.generateData();
 
-        // Measure time for multithreaded execution
+        // Measure time for async execution
         long asyncStartTime = System.nanoTime();
         Map<Integer, DrawerStatistics> asyncResults = Question2.computeStatisticsAsync(drawers);
         long asyncEndTime = System.nanoTime();
@@ -35,6 +35,6 @@ class Question2Test {
         System.out.println("\nEfficiency comparison:");
         System.out.println("Async execution is " + (synchronousDuration / (double) asyncDuration) + " times faster");
 
-        assertTrue(asyncDuration < synchronousDuration, "Async execution should be faster, or at least not much slower.");
+        assertTrue(asyncDuration < synchronousDuration, "Async execution should be faster");
     }
 }
