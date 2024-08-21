@@ -16,6 +16,24 @@ public class DrawerStatistics {
         this.min = min;
     }
 
+    public int getSum() {
+        return sum;
+    }
+
+    public double getAverage() {
+        return average;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+
+
     @Override
     public String toString() {
         return "Sum: " + sum + ", Average: " + average + ", Max: " + max + ", Min: " + min;
