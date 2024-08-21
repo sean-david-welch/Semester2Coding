@@ -37,14 +37,14 @@ public class Question2 {
 
     public static Map<Integer, DrawerStatistics> computeStatisticsAsync(List<List<Integer>> drawers) {
         // ConcurrentHashMap allows safe concurrent modifications
-        Map<Integer, DrawerStatistics> drawerStatisticsMap = new ConcurrentHashMap<>();
+        Map<Integer, DrawerStatistics> drawerStatsMap = new ConcurrentHashMap<>();
 
-        try (ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) {
+        try (ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) {
             // Submit tasks to compute statistics for each drawer
             List<Future<Map.Entry<Integer, DrawerStatistics>>> futures = new ArrayList<>(NUMBER_OF_DRAWERS);
             for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
                 int drawerIndex = i;
-                futures.add(executorService.submit(() -> {
+                futures.add(executor.submit(() -> {
                     DrawerStatistics stats = new DrawerWorker(drawers.get(drawerIndex)).call();
                     return Map.entry(drawerIndex, stats);  // Return the index and stats as an entry
                 }));
@@ -55,7 +55,7 @@ public class Question2 {
                 try {
                     Map.Entry<Integer, DrawerStatistics> entry = future.get();
                     // Store by drawer index
-                    drawerStatisticsMap.put(entry.getKey(), entry.getValue());
+                    drawerStatsMap.put(entry.getKey(), entry.getValue());
                 } catch (InterruptedException | ExecutionException e) {
                     System.err.println("Error processing drawer " + e.getMessage());
                     logger.log(System.Logger.Level.ERROR, "An error occurred!", e.getMessage());
@@ -65,31 +65,31 @@ public class Question2 {
             System.err.println("Unexpected error: " + e.getMessage());
         }
 
-        return drawerStatisticsMap;
+        return drawerStatsMap;
     }
 
-    public static void presentTotals(Map<Integer, DrawerStatistics> drawerStatisticsMap) {
-        int grandTotalSum = 0;
-        int grandMax = Integer.MIN_VALUE;
-        int grandMin = Integer.MAX_VALUE;
+    public static void presentTotals(Map<Integer, DrawerStatistics> drawerStatsMap) {
+        int totalSum = 0;
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
         int totalRecordCount = 0;
 
-        // Compute grand total, max, min using values from the Map
-        for (DrawerStatistics stats : drawerStatisticsMap.values()) {
-            grandTotalSum += stats.sum();
-            grandMax = Math.max(grandMax, stats.max());
-            grandMin = Math.min(grandMin, stats.min());
+        // Compute  total, max, min using values from the Map
+        for (DrawerStatistics stats : drawerStatsMap.values()) {
+            totalSum += stats.sum();
+            max = Math.max(max, stats.max());
+            min = Math.min(min, stats.min());
             totalRecordCount += RECORDS_PER_DRAWER;
         }
 
-        double grandAverage = grandTotalSum / (double) totalRecordCount;
+        double Average = totalSum / (double) totalRecordCount;
 
-        // Present the grand statistics
+        // Present the  statistics
         System.out.println("\nGrand Statistics:");
-        System.out.println("Total Sum: " + grandTotalSum);
-        System.out.println("Average: " + grandAverage);
-        System.out.println("Max: " + grandMax);
-        System.out.println("Min: " + grandMin);
+        System.out.println("Total Sum: " + totalSum);
+        System.out.println("Average: " + Average);
+        System.out.println("Max: " + max);
+        System.out.println("Min: " + min);
     }
 
     public static void main(String[] args) {
@@ -97,10 +97,10 @@ public class Question2 {
         List<List<Integer>> drawers = generateData();
 
         // Compute statistics for each drawer
-        Map<Integer, DrawerStatistics> drawerStatisticsList = computeStatisticsAsync(drawers);
+        Map<Integer, DrawerStatistics> drawerStats = computeStatisticsAsync(drawers);
 
         // Compute and present total statistics
-        presentTotals(drawerStatisticsList);
+        presentTotals(drawerStats);
     }
 }
 
