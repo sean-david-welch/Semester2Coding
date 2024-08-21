@@ -1,23 +1,19 @@
 package taba;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-/*
- * @author Hamilton1
- */
 public class Taba2024 {
-    static ArrayList<Integer>[] drawers = new ArrayList[10];
+    static List<List<Integer>> drawers = new ArrayList<>(10);
 
-    public static ArrayList[] generateData() {
+    public static List<List<Integer>> generateData() {
         Random randomObject = new Random();
         for (int iCount = 0; iCount < 10; iCount++) {
             // Generates 10000 random integer numbers between -10,000 and 10,000
-            int[] iMyIntegerNumbers = randomObject.ints(10000, -10000, 10000).toArray();
-            drawers[iCount] = new ArrayList<Integer>();
-            for (int jCount = 0; jCount < iMyIntegerNumbers.length; jCount++) {
-                drawers[iCount].add(iMyIntegerNumbers[jCount]);
-            }
+            List<Integer> drawer = new ArrayList<>();
+            randomObject.ints(10000, -10000, 10000).forEach(drawer::add);
+            drawers.add(drawer);
         }
         return drawers;
     }
