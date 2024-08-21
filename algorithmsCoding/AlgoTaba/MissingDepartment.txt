@@ -1,0 +1,5 @@
+4,Practical Bronze Shirt,Steel,,754.00
+9,Recycled Fresh Chicken,Granite,,917.00
+13,Bespoke Chips,Plastic,,787.00
+19,Intelligent Rubber Table,Beauty,,357.00
+23,Recycled Chicken,Cotton,,337.00
