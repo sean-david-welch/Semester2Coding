@@ -28,8 +28,22 @@ public class Question2 {
         return drawers;
     }
 
+    public static List<DrawerStatistics> computeStatisticsSync(List<List<Integer>> drawers) {
+    List<DrawerStatistics> drawerStatisticsList = new ArrayList<>();
+
+    // Compute statistics for each drawer on the main thread (single-threaded)
+    for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
+        DrawerStatistics stats = new DrawerWorker(drawers.get(i)).call(); // Directly call the `call()` method
+        System.out.println("Drawer " + (char) ('A' + i) + ": " + stats);
+        drawerStatisticsList.add(stats);
+    }
+
+    return drawerStatisticsList;
+}
+
+
     // Method to compute statistics for each drawer in separate threads
-    public static List<DrawerStatistics> computeStatistics(List<List<Integer>> drawers) {
+    public static List<DrawerStatistics> computeStatisticsAsync(List<List<Integer>> drawers) {
         List<DrawerStatistics> drawerStatisticsList = new ArrayList<>();
 
         // Create an ExecutorService to manage 10 threads, use try-with-resources to ensure proper shutdown
@@ -87,27 +101,11 @@ public class Question2 {
         // Generate data for 10 drawers
         List<List<Integer>> drawers = generateData();
 
-        // Create an ExecutorService to manage 10 threads, use try-with-resources to ensure proper shutdown
-        try (ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) {
-            // Submit tasks to compute statistics for each drawer
-            List<Future<DrawerStatistics>> futures = new ArrayList<>(NUMBER_OF_DRAWERS);
-            for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
-                futures.add(executorService.submit(new DrawerWorker(drawers.get(i))));
-            }
+        // Compute statistics for each drawer
+        List<DrawerStatistics> drawerStatisticsList = computeStatisticsAsync(drawers);
 
-            // Retrieve the results and print them
-            for (int i = 0; i < NUMBER_OF_DRAWERS; i++) {
-                try {
-                    DrawerStatistics stats = futures.get(i).get();
-                    System.out.println("Drawer " + (char) ('A' + i) + ": " + stats);
-                } catch (InterruptedException | ExecutionException e) {
-                    System.err.println("Error processing drawer " + (char) ('A' + i));
-                    logger.log(System.Logger.Level.ERROR, "An error occurred!", e.getMessage());
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
-        }
+        // Compute and present grand statistics
+        presentTotals(drawerStatisticsList);
     }
 }
 
