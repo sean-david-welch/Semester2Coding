@@ -32,7 +32,6 @@ public class Question2 {
         // Generate data for 10 drawers
         List<List<Integer>> drawers = generateData();
 
-
         // Create an ExecutorService to manage 10 threads, use try-with-resources to ensure proper shutdown
         try (ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_DRAWERS)) {
             // Submit tasks to compute statistics for each drawer
