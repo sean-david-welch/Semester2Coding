@@ -1,4 +1,6 @@
-A. Explain in detail, with examples, the concept of Multithreading. (5 Marks)
+# Question 1:
+
+### A. Explain in detail, with examples, the concept of Multithreading. (5 Marks)
 * Multithreading is a concept in software engineering that referes to the execution of multiple threads in parrellel to eachother; whereby a thread represents a lightweight subprocess in execution [1].
 * Multithreading is distinct from multiprocessing becasue threads have a shared memory area and context-switching takes less time than changing between processes [1].
 * Multithreading allows for non-blocking operations to occur thus enhancing performace for the user as multiple operations can occur at the same time [1].
@@ -7,7 +9,7 @@ A. Explain in detail, with examples, the concept of Multithreading. (5 Marks)
 
 --------------------------------------------------------------
 
-B. Discuss the type of problems, with examples, where multithreading fails to improve performance. (5 Marks)
+### B. Discuss the type of problems, with examples, where multithreading fails to improve performance. (5 Marks)
 * On a single processor server, it does not make sense to use multithreading as we do not have multiple processors/cores to make use of, therefore context switching will incur reduced performance due to necessity of sequentail operations. [2].
 * When threads need access to a shared resource, such as a database or shared datastructure, often time multithreading does not make sense as it can lead to locking situations to avoid data corruption [2].
 * If we are dealing with a small amount of data to process, it does not make sense to use multithreading as the overhead of thread management will likely not outweight the performance benefits of multithreading [2].
@@ -16,12 +18,12 @@ B. Discuss the type of problems, with examples, where multithreading fails to im
 
 --------------------------------------------------------------
 
-C. Discuss the difference between threads that extend the Thread class and threads that implement the Runnable interface. (5 Marks)
-* When extending the thread class, we are not overriding any of its methods, instead we override the method of Runnable, which is happened to be implemented by Thread, which is a violation IS-A principle
-* Implementing the Runnable interface and passing it to the thread class is an example of composition of inheritance and is therefore more flexible
-* We can't extend any other classes if using Thread due to Single inheritance in Java
-* Runnable is often considered better design because it separates thread behavior from thread execution
-* Access to more methods if implementing the Runnable interface as we can still implement other interfaces
+### C. Discuss the difference between threads that extend the Thread class and threads that implement the Runnable interface. (5 Marks)
+* When extending the thread class, we are not overriding any of its methods, instead we override the method of Runnable, which is happened to be implemented by Thread, which is a violation IS-A principle [3].
+* Implementing the Runnable interface and passing it to the thread class is an example of composition of inheritance and is therefore more flexible [3].
+* We can't extend any other classes if using Thread due to Single inheritance in Java [3].
+* Runnable is often considered better design because it separates thread behavior from thread execution [3].
+* Access to more methods if implementing the Runnable interface as we can still implement other interfaces [3].
 
 --------------------------------------------------------------
 
