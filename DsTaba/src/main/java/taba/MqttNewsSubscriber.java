@@ -9,13 +9,12 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class MqttNewsSubscriber {
     private static final System.Logger logger = System.getLogger(MqttNewsPublisher.class.getName());
 
-
     public static void main(String[] args) {
         String brokerUrl = "tcp://broker.hivemq.com:1883"; // Public HiveMQ broker
         String clientId = "newsSubscriber";
 
-        try {
-            MqttClient client = new MqttClient(brokerUrl, clientId);
+        // Try-with-resources block to ensure the MqttClient is closed automatically
+        try (MqttClient client = new MqttClient(brokerUrl, clientId)) {
 
             // Set a callback to handle incoming messages
             client.setCallback(new MqttCallback() {
@@ -46,9 +45,12 @@ public class MqttNewsSubscriber {
             client.subscribe(subscriptionTopic);
             System.out.println("Subscribed to topic: " + subscriptionTopic);
 
-        } catch (MqttException e) {
+            // Keep the application running to receive messages
+            System.out.println("Listening for messages. Press Ctrl+C to exit.");
+            Thread.sleep(Long.MAX_VALUE); // Keeps the subscriber alive indefinitely
+
+        } catch (MqttException | InterruptedException e) {
             logger.log(System.Logger.Level.ERROR, "An error occurred in the message queueing subscriber", e);
         }
     }
 }
-
