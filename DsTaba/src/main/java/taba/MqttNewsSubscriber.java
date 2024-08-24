@@ -10,7 +10,7 @@ public class MqttNewsSubscriber {
     private static final System.Logger logger = System.getLogger(MqttNewsSubscriber.class.getName());
 
     public static void main(String[] args) {
-        String brokerUrl = "tcp://broker.hivemq.com:1883";  // Public HiveMQ broker
+        String brokerUrl = "tcp://localhost:1883";  // Local MQTT broker
         String clientId = "newsSubscriber";  // Unique ID for the subscriber client
 
         try (MqttClient client = new MqttClient(brokerUrl, clientId)) {
