@@ -5,6 +5,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MqttNewsPublisher {
+    private static final System.Logger logger = System.getLogger(MqttNewsPublisher.class.getName());
 
     public static void main(String[] args) {
         String brokerUrl = "tcp://broker.hivemq.com:1883"; // Public HiveMQ broker
@@ -32,7 +33,7 @@ public class MqttNewsPublisher {
             // Disconnect after publishing
             client.disconnect();
         } catch (MqttException e) {
-            e.printStackTrace();
+            logger.log(System.Logger.Level.ERROR, "An error occurred in the message queueing service", e);
         }
     }
 }
