@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "taba.recruitment";
+
+package taba.recruitment;
+
+service RecruitmentService {
+    // Unary
+    rpc CreateJob (JobRequest) returns (JobResponse);
+    // Server streaming
+    rpc GetAllCandidates (JobRequest) returns (stream CandidateResponse);
+    // Client streaming
+    rpc UploadResume (stream ResumeRequest) returns (ResumeResponse);
+    // Bidirectional streaming
+    rpc RealTimeInterview (stream InterviewRequest) returns (stream InterviewResponse);
+}
+
+message JobRequest { string job_id = 1; }
+
+message JobResponse { string status = 1; }
+
+message CandidateResponse { string candidate_id = 1; string candidate_name = 2; }
+
+message ResumeRequest { string feedback = 1; }
+
+message ResumeResponse { string result = 1; }
+
+message InterviewRequest { string interview_details = 1; }
+
+message InterviewResponse { string interview_status = 1; }
+
