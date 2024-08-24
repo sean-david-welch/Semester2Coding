@@ -28,12 +28,12 @@ public class RecruitmentImpl extends RecruitmentServiceGrpc.RecruitmentServiceIm
 
         CandidateResponse candidate1 = CandidateResponse.newBuilder()
                 .setCandidateId("123")
-                .setCandidateName("John Doe")
+                .setCandidateName("Sean Paul")
                 .build();
 
         CandidateResponse candidate2 = CandidateResponse.newBuilder()
                 .setCandidateId("124")
-                .setCandidateName("Jane Smith")
+                .setCandidateName("Hugh Jackmontie")
                 .build();
 
         // Send each candidate as a stream
