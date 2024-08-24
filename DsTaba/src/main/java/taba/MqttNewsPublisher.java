@@ -10,10 +10,11 @@ public class MqttNewsPublisher {
     private static final System.Logger logger = System.getLogger(MqttNewsPublisher.class.getName());
 
     public static void main(String[] args) {
-        String brokerUrl = "tcp://localhost:1883";  // Local MQTT broker
+        // Local MQTT broker
+        String brokerUrl = "tcp://localhost:1883";
         String clientId = "newsPublisher";
 
-        startMosquittoBroker();
+        Process mosquittoProcess = startMosquittoBroker();
 
         // Try-with-resources block to ensure the MqttClient is closed automatically
         try (MqttClient client = new MqttClient(brokerUrl, clientId)) {
@@ -43,24 +44,38 @@ public class MqttNewsPublisher {
             client.disconnect();
         } catch (MqttException e) {
             logger.log(System.Logger.Level.ERROR, "An error occurred in the message queueing service", e);
+        } finally {
+            stopMosquittoBroker(mosquittoProcess);
         }
     }
 
     // Method to start the Mosquitto broker using the system's command line
-    private static void startMosquittoBroker() {
+    private static Process startMosquittoBroker() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         // Command to start Mosquitto broker
         processBuilder.command("mosquitto");
 
         try {
-            processBuilder.start();
+            Process process = processBuilder.start();  // Start Mosquitto as a process
             System.out.println("Mosquitto broker started successfully.");
 
-            // Wait for 3 seconds
+            // Wait for 3 seconds to ensure the broker starts
             Thread.sleep(3000);
+            // Return the process so we can shut it down later
+            return process;
 
         } catch (IOException | InterruptedException e) {
             System.out.println("Failed to start Mosquitto broker: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private static void stopMosquittoBroker(Process process) {
+        if (process != null) {
+            System.out.println("Shutting down Mosquitto broker...");
+            // Kill the Mosquitto process
+            process.destroy();
+            System.out.println("Mosquitto broker stopped.");
         }
     }
 }
