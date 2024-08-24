@@ -17,6 +17,7 @@ dependencies {
     implementation("io.grpc:grpc-stub:1.65.1")
 
     implementation("javax.annotation:javax.annotation-api:1.3.2")
+    implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
