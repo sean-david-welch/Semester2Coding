@@ -15,20 +15,25 @@ public class MqttNewsPublisher {
         try (MqttClient client = new MqttClient(brokerUrl, clientId)) {
             client.connect();
 
-            // Create a topic:
-            String country = "Ireland";
-            String category = "Sports";
-            String eventType = "Rugby";
-            String topic = country + "/" + category + "/" + eventType;
+            // First Message - Ireland Rugby News
+            String topic1 = "Ireland/Sports/Rugby";
+            String newsItem1 = "Breaking News: Ireland defeats New Zealand in the Rugby Test Match";
+            MqttMessage message1 = new MqttMessage(newsItem1.getBytes());
+            message1.setQos(2); // Set quality of service level
 
-            // Publish a message:
-            String newsItem = "Breaking News: Ireland defeats New Zealand in the Rugby Test Match";
-            MqttMessage message = new MqttMessage(newsItem.getBytes());
-            message.setQos(2); // Set quality of service level
+            // Publish the first message
+            client.publish(topic1, message1);
+            System.out.println("News published to: " + topic1);
 
-            // Publish the message to the topic
-            client.publish(topic, message);
-            System.out.println("News published to: " + topic);
+            // Second Message - USA Markets News
+            String topic2 = "USA/Business/Markets";
+            String newsItem2 = "Tesla up 25% in one day after new plans for FSD rollout";
+            MqttMessage message2 = new MqttMessage(newsItem2.getBytes());
+            message2.setQos(2); // Set quality of service level
+
+            // Publish the second message
+            client.publish(topic2, message2);
+            System.out.println("News published to: " + topic2);
 
             // Disconnect after publishing
             client.disconnect();
