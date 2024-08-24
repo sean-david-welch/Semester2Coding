@@ -1,0 +1,52 @@
+package taba;
+
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+public class MqttNewsSubscriber {
+
+    public static void main(String[] args) {
+        String brokerUrl = "tcp://broker.hivemq.com:1883"; // Public HiveMQ broker
+        String clientId = "newsSubscriber";
+
+        try {
+            MqttClient client = new MqttClient(brokerUrl, clientId);
+
+            // Set a callback to handle incoming messages
+            client.setCallback(new MqttCallback() {
+                @Override
+                public void connectionLost(Throwable cause) {
+                    System.out.println("Connection lost: " + cause.getMessage());
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    System.out.println("Received news from topic: " + topic);
+                    System.out.println("Message: " + new String(message.getPayload()));
+                }
+
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken token) {
+                    // Not used for subscribers
+                }
+            });
+
+            client.connect();
+
+            // Subscribe to a specific topic, e.g., "USA/Sports/#" for all sports news in the USA
+            String country = "USA";
+            String category = "Sports";
+            String subscriptionTopic = country + "/" + category + "/#"; // Wildcard for all sports events
+
+            client.subscribe(subscriptionTopic);
+            System.out.println("Subscribed to topic: " + subscriptionTopic);
+
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
