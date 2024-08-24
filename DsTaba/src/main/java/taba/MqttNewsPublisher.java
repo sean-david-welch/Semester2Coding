@@ -10,9 +10,9 @@ public class MqttNewsPublisher {
     public static void main(String[] args) {
         String brokerUrl = "tcp://broker.hivemq.com:1883"; // Public HiveMQ broker
         String clientId = "newsPublisher";
-        
-        try {
-            MqttClient client = new MqttClient(brokerUrl, clientId);
+
+        // Try-with-resources block to ensure the MqttClient is closed automatically
+        try (MqttClient client = new MqttClient(brokerUrl, clientId)) {
             client.connect();
 
             // Create a topic, e.g., "USA/Sports/Football"
@@ -30,7 +30,7 @@ public class MqttNewsPublisher {
             client.publish(topic, message);
             System.out.println("News published to topic: " + topic);
 
-            // Disconnect after publishing
+            // Disconnect after publishing (not strictly needed with try-with-resources, but good for clarity)
             client.disconnect();
         } catch (MqttException e) {
             logger.log(System.Logger.Level.ERROR, "An error occurred in the message queueing service", e);
