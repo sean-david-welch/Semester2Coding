@@ -22,14 +22,14 @@ public class MqttNewsSubscriber {
                 @Override
                 public void connectionLost(Throwable cause) {
                     // Callback if the connection is lost
-                    System.out.println("Connection lost: " + cause.getMessage());
+                    logger.log(System.Logger.Level.ERROR,"Connection lost: " + cause.getMessage());
                 }
 
                 @Override
-                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                public void messageArrived(String topic, MqttMessage message) {
                     // This method is invoked when a message arrives
-                    System.out.println("Received news from topic: " + topic);
-                    System.out.println("Message: " + new String(message.getPayload()));
+                    logger.log(System.Logger.Level.INFO,"Received news from topic: " + topic);
+                    logger.log(System.Logger.Level.INFO,"Message: " + new String(message.getPayload()));
                 }
 
                 @Override
@@ -43,15 +43,15 @@ public class MqttNewsSubscriber {
             // Subscribe to the first topic: Ireland/Sports/Rugby
             String subscriptionTopic1 = "Ireland/Sports/Rugby";
             client.subscribe(subscriptionTopic1);
-            System.out.println("Subscribed to topic: " + subscriptionTopic1);
+            logger.log(System.Logger.Level.INFO,"Subscribed to topic: " + subscriptionTopic1);
 
             // Subscribe to the second topic: USA/Business/Markets
             String subscriptionTopic2 = "USA/Business/Markets";
             client.subscribe(subscriptionTopic2);
-            System.out.println("Subscribed to topic: " + subscriptionTopic2);
+            logger.log(System.Logger.Level.INFO,"Subscribed to topic: " + subscriptionTopic2);
 
             // Keep the application running to receive messages indefinitely
-            System.out.println("Listening for messages. Press Ctrl+C to exit.");
+            logger.log(System.Logger.Level.INFO,"Listening for messages. Press Ctrl+C to exit.");
             Thread.sleep(Long.MAX_VALUE);  // Keeps the subscriber alive indefinitely
 
         } catch (MqttException | InterruptedException e) {
