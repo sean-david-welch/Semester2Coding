@@ -52,7 +52,7 @@ public class RecruitmentImpl extends RecruitmentServiceGrpc.RecruitmentServiceIm
             @Override
             public void onNext(ResumeRequest request) {
                 // Process each incoming resume (request contains the resume content)
-                System.out.println("Received resume: " + request.getResumeContent());
+                System.out.println("Received resume: " + request.getResumeFile());
             }
 
             @Override
