@@ -5,6 +5,8 @@ import taba.recruitment.*;
 
 public class RecruitmentImpl extends RecruitmentServiceGrpc.RecruitmentServiceImplBase {
 
+    private static final System.Logger logger = System.getLogger(RecruitmentImpl.class.getName());
+
     // Unary RPC: Create a new job posting
     @Override
     public void createJobPosting(JobRequest request, StreamObserver<JobResponse> responseObserver) {
@@ -56,7 +58,8 @@ public class RecruitmentImpl extends RecruitmentServiceGrpc.RecruitmentServiceIm
             @Override
             public void onError(Throwable t) {
                 // Handle error during streaming
-                t.printStackTrace();
+                logger.log(System.Logger.Level.ERROR, "An error occurred while uploading the resumes {0}", responseObserver);
+
             }
 
             @Override
@@ -90,7 +93,8 @@ public class RecruitmentImpl extends RecruitmentServiceGrpc.RecruitmentServiceIm
             @Override
             public void onError(Throwable t) {
                 // Handle error during streaming
-                t.printStackTrace();
+                logger.log(System.Logger.Level.ERROR, "An error occurred while conducting the interview {0}", responseObserver);
+
             }
 
             @Override
