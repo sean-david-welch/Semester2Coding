@@ -25,7 +25,7 @@ public class RecruitmentServiceImpl extends RecruitmentServiceGrpc.RecruitmentSe
         // Log the received job request
         logger.log(System.Logger.Level.INFO, "Received Job Posting request: {0}", request);
 
-        // Business logic: Create the job (this can be extended to interact with a database)
+        // Create the job
         JobResponse response = JobResponse.newBuilder()
                 .setStatus(JOB_SUCCESS_MESSAGE)
                 .build();
@@ -46,7 +46,7 @@ public class RecruitmentServiceImpl extends RecruitmentServiceGrpc.RecruitmentSe
 
         // Mock implementation: Sending hardcoded candidate responses
         List<CandidateResponse> candidates = new ArrayList<>();
-        candidates.add(CandidateResponse.newBuilder().setCandidateId("123").setCandidateName("Sean Paul").build());
+        candidates.add(CandidateResponse.newBuilder().setCandidateId("123").setCandidateName("Sean DaPaul").build());
         candidates.add(CandidateResponse.newBuilder().setCandidateId("124").setCandidateName("Hugh Jackmontie").build());
 
         // Stream each candidate back to the client
@@ -109,7 +109,7 @@ public class RecruitmentServiceImpl extends RecruitmentServiceGrpc.RecruitmentSe
     // Bidirectional streaming RPC: Real-time interview chat
     @Override
     public StreamObserver<InterviewMessage> realTimeInterview(StreamObserver<InterviewMessage> responseObserver) {
-        return new StreamObserver<InterviewMessage>() {
+        return new StreamObserver<>() {
 
             @Override
             public void onNext(InterviewMessage message) {
