@@ -10,7 +10,7 @@ public class MqttNewsSubscriber {
     private static final System.Logger logger = System.getLogger(MqttNewsPublisher.class.getName());
 
     public static void main(String[] args) {
-        String brokerUrl = "tcp://broker.hivemq.com:1883"; // Public HiveMQ broker
+        String brokerUrl = "tcp://broker.hivemq.com:1883";
         String clientId = "newsSubscriber";
 
         // Try-with-resources block to ensure the MqttClient is closed automatically
@@ -37,8 +37,8 @@ public class MqttNewsSubscriber {
 
             client.connect();
 
-            // Subscribe to a specific topic, e.g., "USA/Sports/#" for all sports news in the USA
-            String country = "USA";
+            // Subscribe to a specific topic:
+            String country = "Ireland";
             String category = "Sports";
             String subscriptionTopic = country + "/" + category + "/#"; // Wildcard for all sports events
 
@@ -47,7 +47,8 @@ public class MqttNewsSubscriber {
 
             // Keep the application running to receive messages
             System.out.println("Listening for messages. Press Ctrl+C to exit.");
-            Thread.sleep(Long.MAX_VALUE); // Keeps the subscriber alive indefinitely
+            // Keeps the subscriber alive indefinitely
+            Thread.sleep(Long.MAX_VALUE);
 
         } catch (MqttException | InterruptedException e) {
             logger.log(System.Logger.Level.ERROR, "An error occurred in the message queueing subscriber", e);

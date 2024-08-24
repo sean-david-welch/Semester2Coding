@@ -15,22 +15,22 @@ public class MqttNewsPublisher {
         try (MqttClient client = new MqttClient(brokerUrl, clientId)) {
             client.connect();
 
-            // Create a topic, e.g., "USA/Sports/Football"
-            String country = "USA";
+            // Create a topic:
+            String country = "Ireland";
             String category = "Sports";
-            String eventType = "Football";
+            String eventType = "Rugby";
             String topic = country + "/" + category + "/" + eventType;
 
-            // Publish a message (news item)
-            String newsItem = "Breaking News: Football finals happening tonight!";
+            // Publish a message:
+            String newsItem = "Breaking News: Ireland defeats New Zealand in the Rugby Test Match";
             MqttMessage message = new MqttMessage(newsItem.getBytes());
             message.setQos(2); // Set quality of service level
 
             // Publish the message to the topic
             client.publish(topic, message);
-            System.out.println("News published to topic: " + topic);
+            System.out.println("News published to: " + topic);
 
-            // Disconnect after publishing (not strictly needed with try-with-resources, but good for clarity)
+            // Disconnect after publishing
             client.disconnect();
         } catch (MqttException e) {
             logger.log(System.Logger.Level.ERROR, "An error occurred in the message queueing service", e);
