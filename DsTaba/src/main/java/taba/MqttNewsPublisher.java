@@ -43,7 +43,7 @@ public class MqttNewsPublisher {
             // Disconnect after publishing
             client.disconnect();
         } catch (MqttException e) {
-            logger.log(System.Logger.Level.ERROR, "An error occurred in the message queueing service", e);
+            logger.log(System.Logger.Level.ERROR, "An error occurred in the message queueing service", e.getMessage());
         } finally {
             stopMosquittoBroker(mosquittoProcess);
         }
@@ -65,17 +65,18 @@ public class MqttNewsPublisher {
             return process;
 
         } catch (IOException | InterruptedException e) {
-            System.out.println("Failed to start Mosquitto broker: " + e.getMessage());
+            logger.log(System.Logger.Level.ERROR, "Failed to start Mosquitto broker: ", e.getMessage());
+
             return null;
         }
     }
 
     private static void stopMosquittoBroker(Process process) {
         if (process != null) {
-            System.out.println("Shutting down Mosquitto broker...");
+            logger.log(System.Logger.Level.INFO, "Shutting down Mosquitto broker...");
             // Kill the Mosquitto process
             process.destroy();
-            System.out.println("Mosquitto broker stopped.");
+            logger.log(System.Logger.Level.INFO, "Mosquitto broker stopped.");
         }
     }
 }
