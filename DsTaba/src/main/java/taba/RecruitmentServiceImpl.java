@@ -5,9 +5,9 @@ import taba.recruitment.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecruitmentImpl extends RecruitmentServiceGrpc.RecruitmentServiceImplBase {
+public class RecruitmentServiceImpl extends RecruitmentServiceGrpc.RecruitmentServiceImplBase {
 
-    private static final System.Logger logger = System.getLogger(RecruitmentImpl.class.getName());
+    private static final System.Logger logger = System.getLogger(RecruitmentServiceImpl.class.getName());
 
     private static final String JOB_SUCCESS_MESSAGE = "Job Created Successfully";
 
@@ -63,9 +63,10 @@ public class RecruitmentImpl extends RecruitmentServiceGrpc.RecruitmentServiceIm
     // Client streaming RPC: Upload multiple resumes
     @Override
     public StreamObserver<ResumeRequest> uploadResume(final StreamObserver<ResumeResponse> responseObserver) {
-        List<String> receivedResumes = new ArrayList<>(); // Store all received resumes
+        // Store all received resumes
+        List<String> receivedResumes = new ArrayList<>();
 
-        return new StreamObserver<ResumeRequest>() {
+        return new StreamObserver<>() {
 
             @Override
             public void onNext(ResumeRequest request) {
