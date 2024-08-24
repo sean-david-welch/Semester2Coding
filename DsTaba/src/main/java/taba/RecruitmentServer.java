@@ -10,9 +10,11 @@ public class RecruitmentServer {
 
     // Start the gRPC server
     public void start() throws IOException {
-        int port = 8080;  // Define the port for the server
+        // Define the port for the server
+        int port = 8080;
+        // Add the RecruitmentService implementation
         server = ServerBuilder.forPort(port)
-                .addService(new RecruitmentServiceImpl())  // Add the RecruitmentService implementation
+                .addService(new RecruitmentServiceImpl())
                 .build()
                 .start();
 
